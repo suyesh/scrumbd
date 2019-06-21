@@ -8,11 +8,11 @@ const NavBarContainer = styled.div`
   color: white;
 `;
 
-function LeftItem() {}
+function NavSectionOne() {}
 
-function RightItem() {}
+function NavSectionTwo() {}
 
-function Logo() {}
+function NavSectionThree() {}
 
 function NavBar() {
   return <NavBarContainer>test</NavBarContainer>;
