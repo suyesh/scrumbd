@@ -10,4 +10,4 @@ function Boards() {
   return <BoardsContainer>boards</BoardsContainer>;
 }
 
-export { Boards };
+export default Boards;

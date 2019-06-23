@@ -10,4 +10,4 @@ function Board() {
   return <BoardContainer>Tasks</BoardContainer>;
 }
 
-export { Board };
+export default Board;

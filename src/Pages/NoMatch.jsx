@@ -10,4 +10,4 @@ function NoMatch() {
   return <NoMatchContainer>NO MATCH</NoMatchContainer>;
 }
 
-export { NoMatch };
+export default NoMatch;

@@ -1,16 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
-import { Boards, Board, NoMatch } from "../Pages";
+import Pages from "../Pages";
 
 function Routes() {
   return (
-    <Fragment>
+    <Suspense fallback={<div>Loading...</div>}>
       <Switch>
-        <Route path="/" exact component={Boards} />
-        <Route path="/board/:id" component={Board} />
-        <Route component={NoMatch} />
+        <Route path="/" exact component={Pages.Boards} />
+        <Route path="/board/:id" component={Pages.Board} />
+        <Route component={Pages.NoMatch} />
       </Switch>
-    </Fragment>
+    </Suspense>
   );
 }
 
