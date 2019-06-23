@@ -8,11 +8,13 @@ const NavBarContainer = styled.div`
   flex-direction: row;
   background-color: #016aa7;
   color: white;
+  position: sticky;
+  top: 0;
 `;
 
 const NavSection = styled.div`
   background-color: ${props => props.background || "red"};
-  height: 55px;
+  height: 100%;
   width: 100%;
 `;
 
