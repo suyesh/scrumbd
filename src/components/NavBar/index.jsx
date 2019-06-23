@@ -6,7 +6,7 @@ import TrelloLogo from "../../assets/images/trelloLogo.svg";
 
 const NavBarContainer = styled.div`
   width: 100%;
-  height: 45px;
+  height: 3.214rem;
   display: flex;
   flex-direction: row;
   background-color: #016aa7;
@@ -21,8 +21,8 @@ const NavSection = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 0.357rem;
+  padding-right: 0.357rem;
   justify-content: ${props => props.justifyContent || "center"};
 `;
 

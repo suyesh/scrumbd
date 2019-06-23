@@ -1,4 +1,4 @@
-export const size = {
+export const sizePX = {
   mobileS: 320,
   mobileM: 375,
   mobileL: 425,
@@ -8,13 +8,23 @@ export const size = {
   desktop: 2560
 };
 
+export const sizeREM = {
+  mobileS: 22.857,
+  mobileM: 26.786,
+  mobileL: 30.357,
+  tablet: 54.857,
+  laptop: 73.143,
+  laptopL: 102.857,
+  desktop: 182.857
+};
+
 export const media = {
-  mobileS: `(min-width: ${size.mobileS}px)`,
-  mobileM: `(min-width: ${size.mobileM}px)`,
-  mobileL: `(min-width: ${size.mobileL}px)`,
-  tablet: `(min-width: ${size.tablet}px)`,
-  laptop: `(min-width: ${size.laptop}px)`,
-  laptopL: `(min-width: ${size.laptopL}px)`,
-  desktop: `(min-width: ${size.desktop}px)`,
-  desktopL: `(min-width: ${size.desktop}px)`
+  mobileS: `(min-width: ${size.mobileS}rem)`,
+  mobileM: `(min-width: ${size.mobileM}rem)`,
+  mobileL: `(min-width: ${size.mobileL}rem)`,
+  tablet: `(min-width: ${size.tablet}rem)`,
+  laptop: `(min-width: ${size.laptop}rem)`,
+  laptopL: `(min-width: ${size.laptopL}rem)`,
+  desktop: `(min-width: ${size.desktop}rem)`,
+  desktopL: `(min-width: ${size.desktop}rem)`
 };
