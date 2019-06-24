@@ -8,6 +8,13 @@ const StyledButton = styled(Button)`
   border: none !important;
   box-shadow: 0 !important;
   text-transform: capitalize !important;
+  width: ${props => !props.isMobile && props.name === "search" && "200px"};
+  display: ${props =>
+    !props.isMobile && props.name === "search" && "flex"} !important;
+  justify-content: ${props =>
+    !props.isMobile && props.name === "search" && "flex-end"} !important;
+  cursor: ${props =>
+    !props.isMobile && props.name === "search" && "text"} !important;
 
   &:hover {
     background-color: ${Color("#599ac3")
@@ -25,6 +32,7 @@ function NavItem({ isMobile, icon, color, name, onClick, showText }) {
         name={name}
         labelPosition="left"
         onClick={onClick}
+        isMobile={isMobile}
       >
         <Icon name={icon} />
         {name}
@@ -38,6 +46,7 @@ function NavItem({ isMobile, icon, color, name, onClick, showText }) {
       color={color}
       name={name}
       onClick={() => onClick()}
+      isMobile={isMobile}
     />
   );
 }
