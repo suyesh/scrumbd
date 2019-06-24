@@ -59,7 +59,7 @@ function NavBarBase({ isMobile, showSearch, ...props }) {
       </NavSection>
 
       <NavSection>
-        <Logo logo={TrelloLogo} />
+        <Logo logo={TrelloLogo} shrink={showSearch && !isMobile} />
       </NavSection>
 
       <NavSection justifyContent="flex-end">

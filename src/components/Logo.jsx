@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { Image } from "semantic-ui-react";
 
 const StyledImage = styled(Image)`
-  width: 7rem;
-  opacity: 0.5;
+  width: ${props => (props.shrink === "true" ? "6em" : "7rem")};
+  margin-right: ${props => props.shrink === "true" && "100px"};
+  opacity: ${props => (props.shrink === "true" ? 0.5 : 0.9)};
   cursor: pointer;
 
   &:hover {
@@ -12,8 +13,8 @@ const StyledImage = styled(Image)`
   }
 `;
 
-function Logo({ logo }) {
-  return <StyledImage src={logo} />;
+function Logo({ logo, shrink }) {
+  return <StyledImage src={logo} shrink={shrink.toString()} />;
 }
 
 export { Logo };
