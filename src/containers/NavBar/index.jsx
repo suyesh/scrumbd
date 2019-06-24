@@ -53,7 +53,7 @@ function NavBarBase({ isMobile, ...props }) {
           name="search"
           isMobile={isMobile}
           onClick={handleSearchClick}
-          hide={showSearchInput}
+          hide={showSearchInput && !isMobile}
         />
 
         <SearchInput
