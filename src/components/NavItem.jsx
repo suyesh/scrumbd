@@ -8,13 +8,16 @@ const StyledButton = styled(Button)`
   border: none !important;
   box-shadow: 0 !important;
   text-transform: capitalize !important;
-  width: ${props => !props.isMobile && props.name === "search" && "200px"};
+  width: ${props =>
+    !props.ismobile === "true" && props.name === "search" && "200px"};
   display: ${props =>
-    !props.isMobile && props.name === "search" && "flex"} !important;
+    !props.ismobile === "true" && props.name === "search" && "flex"} !important;
   justify-content: ${props =>
-    !props.isMobile && props.name === "search" && "flex-end"} !important;
+    !props.ismobile === "true" &&
+    props.name === "search" &&
+    "flex-end"} !important;
   cursor: ${props =>
-    !props.isMobile && props.name === "search" && "text"} !important;
+    !props.ismobile === "true" && props.name === "search" && "text"} !important;
 
   &:hover {
     background-color: ${Color("#599ac3")
@@ -23,7 +26,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-function NavItem({ isMobile, icon, color, name, onClick, showText }) {
+function NavItem({ isMobile, icon, color, name, onClick, showText, hide }) {
   if (showText && !isMobile) {
     return (
       <StyledButton
@@ -32,12 +35,16 @@ function NavItem({ isMobile, icon, color, name, onClick, showText }) {
         name={name}
         labelPosition="left"
         onClick={onClick}
-        isMobile={isMobile}
+        ismobile={isMobile.toString()}
       >
         <Icon name={icon} />
         {name}
       </StyledButton>
     );
+  }
+
+  if (hide) {
+    return null;
   }
 
   return (
@@ -46,7 +53,7 @@ function NavItem({ isMobile, icon, color, name, onClick, showText }) {
       color={color}
       name={name}
       onClick={() => onClick()}
-      isMobile={isMobile}
+      ismobile={isMobile.toString()}
     />
   );
 }

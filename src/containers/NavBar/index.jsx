@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import withSizes from "react-sizes";
 import { compose } from "recompose";
 import { withRouter } from "react-router-dom";
-import { NavBarContainer, NavSection, Logo, NavItem } from "../../components";
+import {
+  NavBarContainer,
+  NavSection,
+  Logo,
+  NavItem,
+  SearchInput
+} from "../../components";
 import TrelloLogo from "../../assets/images/trelloLogo.svg";
 import { sizePX } from "../../utils/deviceSizes";
 
 function NavBarBase({ isMobile, ...props }) {
+  const [showSearchInput, setSearchInput] = useState(false);
+
   const navigateToHome = () => {
     props.history.push("/");
   };
+
+  const handleSearchClick = () => {
+    if (isMobile) {
+      props.history.push("/search");
+      return;
+    }
+    setSearchInput(true);
+  };
+
   return (
     <NavBarContainer>
       <NavSection justifyContent="flex-start">
@@ -20,6 +37,7 @@ function NavBarBase({ isMobile, ...props }) {
           isMobile={isMobile}
           onClick={navigateToHome}
         />
+
         <NavItem
           icon="trello"
           color="facebook"
@@ -28,17 +46,27 @@ function NavBarBase({ isMobile, ...props }) {
           onClick={() => console.log("/")}
           showText
         />
+
         <NavItem
           icon="search"
           color="facebook"
           name="search"
           isMobile={isMobile}
-          onClick={() => console.log("Clicked")}
+          onClick={handleSearchClick}
+          hide={showSearchInput}
+        />
+
+        <SearchInput
+          show={showSearchInput && !isMobile}
+          onClose={() => setSearchInput(false)}
+          onNavigate={() => props.history.push("/search")}
         />
       </NavSection>
+
       <NavSection>
         <Logo logo={TrelloLogo} />
       </NavSection>
+
       <NavSection justifyContent="flex-end">
         <NavItem
           icon="add"
