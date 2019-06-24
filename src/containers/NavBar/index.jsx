@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import withSizes from "react-sizes";
+import { connect } from "react-redux";
 import { compose } from "recompose";
 import { withRouter } from "react-router-dom";
 import {
@@ -11,20 +12,15 @@ import {
 } from "../../components";
 import TrelloLogo from "../../assets/images/trelloLogo.svg";
 import { sizePX } from "../../utils/deviceSizes";
+import { showSearchInput } from "./redux/NavBarActions";
 
-function NavBarBase({ isMobile, ...props }) {
-  const [showSearchInput, setSearchInput] = useState(false);
-
+function NavBarBase({ isMobile, showSearch, ...props }) {
   const navigateToHome = () => {
     props.history.push("/");
   };
 
   const handleSearchClick = () => {
-    if (isMobile) {
-      props.history.push("/search");
-      return;
-    }
-    setSearchInput(true);
+    props.showSearchInput(!showSearch);
   };
 
   return (
@@ -53,13 +49,12 @@ function NavBarBase({ isMobile, ...props }) {
           name="search"
           isMobile={isMobile}
           onClick={handleSearchClick}
-          hide={showSearchInput && !isMobile}
+          hide={showSearch && !isMobile}
         />
 
         <SearchInput
-          show={showSearchInput && !isMobile}
-          onClose={() => setSearchInput(false)}
-          onNavigate={() => props.history.push("/search")}
+          show={showSearch && !isMobile}
+          onClose={handleSearchClick}
         />
       </NavSection>
 
@@ -98,9 +93,21 @@ const mapSizesToProps = ({ width }) => ({
   isMobile: width < sizePX.laptop
 });
 
+const mapStateToProps = ({ nav }) => ({
+  showSearch: nav.showSearch
+});
+
+const actions = {
+  showSearchInput
+};
+
 const NavBar = compose(
   withRouter,
-  withSizes(mapSizesToProps)
+  withSizes(mapSizesToProps),
+  connect(
+    mapStateToProps,
+    actions
+  )
 )(NavBarBase);
 
 export { NavBar };

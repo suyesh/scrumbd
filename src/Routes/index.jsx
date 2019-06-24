@@ -8,7 +8,6 @@ function Routes() {
     <Suspense fallback={<Loading />}>
       <Switch>
         <Route path="/" exact component={Pages.Boards} />
-        <Route path="/search" component={Pages.Search} />
         <Route path="/board/:id" component={Pages.Board} />
         <Route component={Pages.NoMatch} />
       </Switch>

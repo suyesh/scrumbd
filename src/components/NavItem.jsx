@@ -9,15 +9,15 @@ const StyledButton = styled(Button)`
   box-shadow: 0 !important;
   text-transform: capitalize !important;
   width: ${props =>
-    !props.ismobile === "true" && props.name === "search" && "200px"};
+    props.ismobile === "false" && props.name === "search" && "200px"};
   display: ${props =>
-    !props.ismobile === "true" && props.name === "search" && "flex"} !important;
+    props.ismobile === "false" && props.name === "search" && "flex"} !important;
   justify-content: ${props =>
-    !props.ismobile === "true" &&
+    props.ismobile === "false" &&
     props.name === "search" &&
     "flex-end"} !important;
   cursor: ${props =>
-    !props.ismobile === "true" && props.name === "search" && "text"} !important;
+    props.ismobile === "false" && props.name === "search" && "text"} !important;
 
   &:hover {
     background-color: ${Color("#599ac3")
