@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Routes from "../Routes";
-import { NavBar } from "../components";
+import { NavBar } from "../containers";
 import GlobalStyle from "../utils/globalStyles";
 
 function App() {

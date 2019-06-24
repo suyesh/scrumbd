@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Image } from "semantic-ui-react";
+import { Button, Image, Icon } from "semantic-ui-react";
+import withSizes from "react-sizes";
 import Color from "color";
 import TrelloLogo from "../../assets/images/trelloLogo.svg";
+import { sizePX } from "../../utils/deviceSizes";
 
 const NavBarContainer = styled.div`
   width: 100%;
@@ -48,12 +50,23 @@ const StyledImage = styled(Image)`
   }
 `;
 
-function NavBar() {
+function NavBarBase({ isMobile }) {
+  const boardsButton = () => {
+    if (isMobile) {
+      return <StyledButton icon="trello" color="facebook" name="boards" />;
+    }
+    return (
+      <StyledButton icon color="facebook" name="boards" labelPosition="left">
+        <Icon name="trello" />
+        Boards
+      </StyledButton>
+    );
+  };
   return (
     <NavBarContainer>
       <NavSection justifyContent="flex-start">
         <StyledButton icon="home" color="facebook" name="home" />
-        <StyledButton icon="trello" color="facebook" name="boards" />
+        {boardsButton()}
         <StyledButton icon="search" color="facebook" name="search" />
       </NavSection>
       <NavSection>
@@ -67,5 +80,11 @@ function NavBar() {
     </NavBarContainer>
   );
 }
+
+const mapSizesToProps = ({ width }) => ({
+  isMobile: width < sizePX.laptop
+});
+
+const NavBar = withSizes(mapSizesToProps)(NavBarBase);
 
 export { NavBar };

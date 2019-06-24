@@ -19,12 +19,12 @@ export const sizeREM = {
 };
 
 export const media = {
-  mobileS: `(min-width: ${size.mobileS}rem)`,
-  mobileM: `(min-width: ${size.mobileM}rem)`,
-  mobileL: `(min-width: ${size.mobileL}rem)`,
-  tablet: `(min-width: ${size.tablet}rem)`,
-  laptop: `(min-width: ${size.laptop}rem)`,
-  laptopL: `(min-width: ${size.laptopL}rem)`,
-  desktop: `(min-width: ${size.desktop}rem)`,
-  desktopL: `(min-width: ${size.desktop}rem)`
+  mobileS: `(min-width: ${sizeREM.mobileS}rem)`,
+  mobileM: `(min-width: ${sizeREM.mobileM}rem)`,
+  mobileL: `(min-width: ${sizeREM.mobileL}rem)`,
+  tablet: `(min-width: ${sizeREM.tablet}rem)`,
+  laptop: `(min-width: ${sizeREM.laptop}rem)`,
+  laptopL: `(min-width: ${sizeREM.laptopL}rem)`,
+  desktop: `(min-width: ${sizeREM.desktop}rem)`,
+  desktopL: `(min-width: ${sizeREM.desktop}rem)`
 };
