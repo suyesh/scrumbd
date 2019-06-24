@@ -33,7 +33,12 @@ function NavItem({ isMobile, icon, color, name, onClick, showText }) {
   }
 
   return (
-    <StyledButton icon={icon} color={color} name={name} onClick={onClick} />
+    <StyledButton
+      icon={icon}
+      color={color}
+      name={name}
+      onClick={() => onClick()}
+    />
   );
 }
 
