@@ -21,13 +21,42 @@ const BoardsContainer = styled.div`
   }
 `;
 
-const SideMenu = styled.div`
+const SideMenu = styled.nav`
   width: 16.429rem;
   padding: 10%;
 
   @media (max-width: ${sizeREM.tablet}rem) {
     display: none;
   }
+`;
+
+const StyledUl = styled.ul`
+  list-style: none;
+`;
+
+const StyledLi = styled.li`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.429rem 0.571rem 0.429rem 0.429rem;
+  color: #0079bf;
+  line-height: 1.429rem;
+  font-weight: 700;
+  background-color: #e4f0f6;
+  cursor: pointer;
+  border-radius: 4px;
+  min-height: 1.429rem;
+  margin-bottom: 10px;
+
+  &:hover {
+    background-color: grey;
+  }
+`;
+
+const StyledSpan = styled.span`
+  margin-right: auto;
+  margin-left: 0.714rem;
 `;
 
 const BoardsList = styled.div`
@@ -38,34 +67,19 @@ function Boards() {
   return (
     <BoardsContainer>
       <SideMenu>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            paddingTop: "10px",
-            paddingBottom: "10px"
-          }}
-        >
-          <Icon name="trello" />{" "}
-          <span style={{ marginRight: "auto", marginLeft: "10px" }}>
-            Boards
-          </span>
-        </div>
+        <StyledUl>
+          <StyledLi>
+            <Icon name="trello" size="large" />
+            <StyledSpan>Boards</StyledSpan>
+          </StyledLi>
 
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            paddingTop: "10px",
-            paddingBottom: "10px"
-          }}
-        >
-          <Icon name="trello" />{" "}
-          <span style={{ marginRight: "auto", marginLeft: "10px" }}>Home</span>
-        </div>
+          <StyledLi>
+            <Icon name="home" size="large" />
+            <StyledSpan>Home</StyledSpan>
+          </StyledLi>
+        </StyledUl>
       </SideMenu>
+
       <BoardsList>test</BoardsList>
     </BoardsContainer>
   );
