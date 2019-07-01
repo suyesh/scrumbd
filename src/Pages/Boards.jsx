@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Icon } from "semantic-ui-react";
 import { media, sizeREM } from "../utils/deviceSizes";
 
 const BoardsContainer = styled.div`
@@ -22,7 +23,7 @@ const BoardsContainer = styled.div`
 
 const SideMenu = styled.div`
   width: 16.429rem;
-  background-color: red;
+  padding: 10%;
 
   @media (max-width: ${sizeREM.tablet}rem) {
     display: none;
@@ -36,7 +37,35 @@ const BoardsList = styled.div`
 function Boards() {
   return (
     <BoardsContainer>
-      <SideMenu>test</SideMenu>
+      <SideMenu>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            paddingTop: "10px",
+            paddingBottom: "10px"
+          }}
+        >
+          <Icon name="trello" />{" "}
+          <span style={{ marginRight: "auto", marginLeft: "10px" }}>
+            Boards
+          </span>
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            paddingTop: "10px",
+            paddingBottom: "10px"
+          }}
+        >
+          <Icon name="trello" />{" "}
+          <span style={{ marginRight: "auto", marginLeft: "10px" }}>Home</span>
+        </div>
+      </SideMenu>
       <BoardsList>test</BoardsList>
     </BoardsContainer>
   );
