@@ -7,8 +7,9 @@ function Routes() {
   return (
     <Suspense fallback={<Loading />}>
       <Switch>
-        <Route path="/" exact component={Pages.Boards} />
-        <Route path="/board/:id" component={Pages.Board} />
+        <Route path="/" exact component={Pages.Dashboard} />
+        <Route path="/boards" component={Pages.Dashboard} />
+        <Route path="/boards/:id" component={Pages.Board} />
         <Route component={Pages.NoMatch} />
       </Switch>
     </Suspense>

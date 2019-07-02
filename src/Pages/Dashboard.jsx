@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { Route } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
 import { media, sizeREM } from "../utils/deviceSizes";
 
-const BoardsContainer = styled.div`
+const DashboardContainer = styled.div`
   height: 100%;
   margin: 2% 1%;
   display: grid;
@@ -59,13 +60,11 @@ const StyledSpan = styled.span`
   margin-left: 0.714rem;
 `;
 
-const BoardsList = styled.div`
-  background-color: green;
-`;
+const BoardsList = styled.div``;
 
-function Boards() {
+function Dashboard() {
   return (
-    <BoardsContainer>
+    <DashboardContainer>
       <SideMenu>
         <StyledUl>
           <StyledLi>
@@ -80,9 +79,11 @@ function Boards() {
         </StyledUl>
       </SideMenu>
 
-      <BoardsList>test</BoardsList>
-    </BoardsContainer>
+      <BoardsList>
+        <Route exact path="/boards" component={() => <h1>Hello boards</h1>} />
+      </BoardsList>
+    </DashboardContainer>
   );
 }
 
-export default Boards;
+export default Dashboard;

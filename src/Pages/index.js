@@ -1,11 +1,11 @@
 import { lazy } from "react";
 
-const Boards = lazy(() => import("./Boards"));
+const Dashboard = lazy(() => import("./Dashboard"));
 const Board = lazy(() => import("./Board"));
 const NoMatch = lazy(() => import("./NoMatch"));
 
 const Pages = {
-  Boards,
+  Dashboard,
   Board,
   NoMatch
 };
