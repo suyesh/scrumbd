@@ -1,16 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
+import withLayout from "../Layout";
 import Routes from "../Routes";
-import { NavBar } from "../containers";
-import GlobalStyle from "../utils/globalStyles";
 
 function App() {
-  return (
-    <Fragment>
-      <GlobalStyle />
-      <NavBar />
-      <Routes />
-    </Fragment>
-  );
+  return <Routes />;
 }
 
-export default App;
+export default withLayout(App);
