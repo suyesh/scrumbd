@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.250em;
     font-weight: 400;
     background-color: #FAFBFC;
+    box-sizing: border-box;
   }
 `;
 
