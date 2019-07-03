@@ -13,10 +13,11 @@ import {
 import TrelloLogo from "../../assets/images/trelloLogo.svg";
 import { sizePX } from "../../utils/deviceSizes";
 import { showSearchInput } from "./redux/NavBarActions";
+import { ROUTES } from "../../constants";
 
 function NavBarBase({ isMobile, showSearch, ...props }) {
   const navigateToHome = () => {
-    props.history.push("/");
+    props.history.push(ROUTES.root);
   };
 
   const handleSearchClick = () => {

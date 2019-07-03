@@ -1,9 +1,9 @@
 import React from "react";
 import withLayout from "../Layout";
-import Routes from "../Routes";
+import { MainRoutes } from "../Routes";
 
 function App() {
-  return <Routes />;
+  return <MainRoutes />;
 }
 
 export default withLayout(App);
