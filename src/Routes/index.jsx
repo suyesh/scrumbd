@@ -20,12 +20,14 @@ export function MainRoutes() {
 export function DashboardRoutes() {
   return (
     <Suspense fallback={<Loading />}>
-      <Route
-        exact
-        path={ROUTES.boards}
-        component={() => <h1>Hello boards</h1>}
-      />
-      <Route exact path={ROUTES.root} component={() => <h1>Hello Root</h1>} />
+      <Switch>
+        <Route
+          exact
+          path={ROUTES.boards}
+          component={() => <h1>Hello boards</h1>}
+        />
+        <Route exact path={ROUTES.root} component={() => <h1>Hello Root</h1>} />
+      </Switch>
     </Suspense>
   );
 }
