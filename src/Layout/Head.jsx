@@ -13,7 +13,7 @@ function Head({ location: { pathname } }) {
 
   return (
     <Helmet>
-      <meta name="theme-color" content="#599AC3" />
+      <meta name="theme-color" content="#026AA7" />
       <title>{`${title} | Trello`}</title>
     </Helmet>
   );
