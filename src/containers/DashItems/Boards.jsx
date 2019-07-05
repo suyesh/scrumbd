@@ -20,7 +20,7 @@ const BoardCardContainer = styled.div`
   padding: 10px;
 `;
 const BoardCard = styled.div`
-  background-color: black;
+  background-color: #036aa7;
   width: 100%;
   height: 100%;
   background-size: cover;

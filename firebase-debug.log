@@ -1,0 +1,26 @@
+[debug] [2019-07-05T04:33:37.334Z] ----------------------------------------------------------------------
+[debug] [2019-07-05T04:33:37.336Z] Command:       /Users/suyesh/.nvm/versions/node/v10.16.0/bin/node /Users/suyesh/.nvm/versions/node/v10.16.0/bin/firebase deploy --only hosting
+[debug] [2019-07-05T04:33:37.336Z] CLI Version:   7.0.2
+[debug] [2019-07-05T04:33:37.336Z] Platform:      darwin
+[debug] [2019-07-05T04:33:37.336Z] Node Version:  v10.16.0
+[debug] [2019-07-05T04:33:37.337Z] Time:          Fri Jul 05 2019 00:33:37 GMT-0400 (GMT-04:00)
+[debug] [2019-07-05T04:33:37.337Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-07-05T04:33:37.351Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-07-05T04:33:37.352Z] > authorizing via signed-in user
+[debug] [2019-07-05T04:33:37.352Z] [iam] checking project scrumbd-3043a for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-07-05T04:33:37.353Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-07-05T04:33:37.353Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-07-05T04:33:37.489Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-05T04:33:37.502Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/scrumbd-3043a:testIamPermissions  
+
+[debug] [2019-07-05T04:33:37.799Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-05T04:33:37.801Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/scrumbd-3043a  
+ 
+[debug] [2019-07-05T04:33:38.101Z] <<< HTTP RESPONSE 200
+[debug] [2019-07-05T04:33:39.403Z] TypeError: Cannot read property 'wanted' of undefined
+    at /Users/suyesh/.nvm/versions/node/v10.16.0/lib/node_modules/firebase-tools/lib/checkFirebaseSDKVersion.js:37:51
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+[error] 
+[error] Error: An unexpected error has occurred.
