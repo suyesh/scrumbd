@@ -8,16 +8,16 @@ const unsplashAPi =
 
 const BoardItem = styled.div`
   height: fit-content;
-  margin-bottom: 10px;
+  margin-bottom: 0.714rem;
 `;
 
 const BoardCardContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  grid-gap: 10px;
-  grid-auto-rows: 94px;
-  padding: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(13.571rem, 1fr));
+  grid-gap: 0.714rem;
+  grid-auto-rows: 6.714rem;
+  padding: 0.714rem;
 `;
 const BoardCard = styled.div`
   background-color: #036aa7;
@@ -28,10 +28,7 @@ const BoardCard = styled.div`
   background-position: center;
   background-image: url(${props => props.image});
   cursor: pointer;
-  border-radius: 3px;
-  -webkit-box-shadow: 1px 1px 5px -2px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 1px 1px 5px -2px rgba(0, 0, 0, 0.75);
-  box-shadow: 1px 1px 5px -2px rgba(0, 0, 0, 0.75);
+  border-radius: 0.214rem;
 
   &:hover {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -43,8 +40,8 @@ const BoardItemTitleContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 40px;
-  padding: 5px;
+  height: 2.857rem;
+  padding: 0.357rem;
   margin: 0;
 `;
 
@@ -52,7 +49,7 @@ const StyledIcon = styled(Icon)`
   align-self: flex-end !important;
   margin-top: auto !important;
   margin-bottom: auto !important;
-  margin-right: 15px !important;
+  margin-right: 1.071rem !important;
 `;
 
 const HeaderContainer = styled.div`

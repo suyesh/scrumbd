@@ -22,8 +22,8 @@ export function DashboardRoutes() {
   return (
     <Suspense fallback={<Loading />}>
       <Switch>
-        <Route exact path={ROUTES.boards} component={DashItems.boards} />
-        <Route exact path={ROUTES.root} component={DashItems.home} />
+        <Route exact path={ROUTES.root} component={DashItems.boards} />
+        <Route exact path={ROUTES.home} component={DashItems.home} />
       </Switch>
     </Suspense>
   );

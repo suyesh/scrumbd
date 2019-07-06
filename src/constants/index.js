@@ -1,5 +1,5 @@
 export const ROUTES = {
   root: "/",
-  boards: "/boards",
+  home: "/home",
   board: "/boards/:id"
 };
