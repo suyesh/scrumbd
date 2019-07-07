@@ -26,12 +26,18 @@ const BoardCard = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url(${props => props.image});
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url(${props => props.image});
   cursor: pointer;
   border-radius: 0.214rem;
+  color: white;
+  padding: 10px 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 
   &:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url(${props => props.image});
   }
 `;
@@ -72,7 +78,18 @@ function BoardItemTitle({ title, icon }) {
 }
 
 function BoardCards({ images }) {
-  return images.map((image, index) => <BoardCard key={index} image={image} />);
+  return images.map((image, index) => (
+    <BoardCard key={index} image={image}>
+      <Header style={{ color: "white" }}>
+        Test Board Name dskfjds dsfsdfsadfsdaf sdgsadgasdg
+      </Header>
+      <Icon
+        name="star outline"
+        color="yellow"
+        style={{ alignSelf: "flex-end", position: "absolute", bottom: 15 }}
+      />
+    </BoardCard>
+  ));
 }
 
 function Boards() {
