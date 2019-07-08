@@ -9,6 +9,7 @@ const NavBarContainer = styled.div`
   color: white;
   position: sticky;
   top: 0;
+  z-index: 10000;
 `;
 
 export { NavBarContainer };
