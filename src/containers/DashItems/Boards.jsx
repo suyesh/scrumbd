@@ -20,6 +20,7 @@ const BoardCardContainer = styled.div`
   grid-auto-rows: 6.714rem;
   padding: 0.714rem;
 `;
+
 const BoardCard = styled.div`
   background-color: #036aa7;
   width: 100%;
@@ -32,7 +33,7 @@ const BoardCard = styled.div`
   cursor: pointer;
   border-radius: 0.214rem;
   color: white;
-  padding: 10px 10px 0 10px;
+  padding: 0.714em 0.714em 0 0.714em;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -64,7 +65,14 @@ const HeaderContainer = styled.div`
 `;
 
 const StyledHeader = styled(Header)`
-  color: #172b4d !important;
+  color: ${props => props.color} !important;
+`;
+
+const Star = styled(Icon)`
+  align-self: flex-end !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  margin-bottom: 1.071em !important;
 `;
 
 function BoardItemTitle({ title, icon }) {
@@ -72,23 +80,27 @@ function BoardItemTitle({ title, icon }) {
     <BoardItemTitleContainer>
       <StyledIcon name={icon} />
       <HeaderContainer>
-        <StyledHeader as="h3">{title}</StyledHeader>
+        <StyledHeader as="h3" color="#172b4d">
+          {title}
+        </StyledHeader>
       </HeaderContainer>
     </BoardItemTitleContainer>
   );
 }
 
 function BoardCards({ images }) {
+  const [star, showStar] = useState(null);
   return images.map((image, index) => (
-    <BoardCard key={index} image={image}>
-      <Header style={{ color: "white" }}>
+    <BoardCard
+      key={index}
+      image={image}
+      onMouseOver={() => showStar(index)}
+      onMouseOut={() => showStar(null)}
+    >
+      <StyledHeader color="white">
         {truncate("Test Board Name dskfjds dsfsdfsadfsdaf sdgsadgasdg")}
-      </Header>
-      <Icon
-        name="star outline"
-        color="yellow"
-        style={{ alignSelf: "flex-end", position: "absolute", bottom: 15 }}
-      />
+      </StyledHeader>
+      {star === index && <Star name="star outline" color="yellow" />}
     </BoardCard>
   ));
 }
