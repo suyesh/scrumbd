@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Header, Icon } from "semantic-ui-react";
 import axios from "axios";
+import { truncate } from "lodash";
 
 const unsplashAPi =
   "aab800b211a279fa2ebc14a6c1c3e16f470a2d8dcf3e73ec8d0e7d162af4c0b2";
@@ -26,7 +27,7 @@ const BoardCard = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
     url(${props => props.image});
   cursor: pointer;
   border-radius: 0.214rem;
@@ -37,7 +38,7 @@ const BoardCard = styled.div`
   position: relative;
 
   &:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
       url(${props => props.image});
   }
 `;
@@ -81,7 +82,7 @@ function BoardCards({ images }) {
   return images.map((image, index) => (
     <BoardCard key={index} image={image}>
       <Header style={{ color: "white" }}>
-        Test Board Name dskfjds dsfsdfsadfsdaf sdgsadgasdg
+        {truncate("Test Board Name dskfjds dsfsdfsadfsdaf sdgsadgasdg")}
       </Header>
       <Icon
         name="star outline"
