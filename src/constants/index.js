@@ -1,7 +1,8 @@
 export const ROUTES = {
   root: "/",
   home: "/home",
-  board: "/boards/:id"
+  board: "/boards/:id",
+  teams: "/teams/:id"
 };
 
 export const UNSPLASH_API =

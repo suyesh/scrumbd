@@ -16,6 +16,7 @@ export const BoardCard = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  margin: 0 2% 8px 0 !important;
 
   &:hover {
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),

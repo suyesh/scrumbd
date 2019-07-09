@@ -21,3 +21,5 @@ export * from "./Star";
 export * from "./StyledHeader";
 export * from "./StyledIcon";
 export * from "./BoardItemTitle";
+export * from "./BoardCards";
+export * from "./BoardItems";

@@ -24,6 +24,7 @@ export function DashboardRoutes() {
       <Switch>
         <Route exact path={ROUTES.root} component={DashItems.boards} />
         <Route exact path={ROUTES.home} component={DashItems.home} />
+        <Route exact path={ROUTES.teams} component={DashItems.teams} />
       </Switch>
     </Suspense>
   );
