@@ -8,6 +8,7 @@ function PersonalBoards() {
       boards={FAKE_PERSONAL_BOARDS}
       type="personal"
       name="Personal Boards"
+      onCreate={() => console.log("hello")}
     />
   );
 }

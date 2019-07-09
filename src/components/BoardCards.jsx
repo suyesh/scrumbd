@@ -1,8 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
+import styled from "styled-components";
 import { BoardCard, StyledHeader, TruncatedText, Star } from "./index";
 
-export function BoardCards({ boards }) {
-  const [star, showStar] = useState(null);
+const StyledBoardCard = styled(BoardCard)`
+  color: #172b4d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(9, 30, 66, 0.03);
+  font-weight: 400 !important;
+  text-align: center !important;
+  line-height: 1.429rem !important;
+
+  &:hover {
+    background-image: none;
+    background-color: rgba(9, 30, 66, 0.04) !important;
+  }
+`;
+
+function Boards({ boards, showStar, star }) {
   return boards.map((board, index) => (
     <BoardCard
       key={index}
@@ -27,4 +43,15 @@ export function BoardCards({ boards }) {
       />
     </BoardCard>
   ));
+}
+
+export function BoardCards({ boards, onCreate }) {
+  const [star, showStar] = useState(null);
+
+  return (
+    <Fragment>
+      <Boards boards={boards} star={star} showStar={showStar} />
+      {onCreate && <StyledBoardCard>Create Board</StyledBoardCard>}
+    </Fragment>
+  );
 }
