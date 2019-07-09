@@ -8,19 +8,18 @@ import styled from "styled-components";
 
 const ListTitle = styled.li`
   color: #6b778c;
-  font-size: 12px;
+  font-size: 0.857rem;
   font-weight: 500;
   letter-spacing: 0.04em;
-  line-height: 16px;
-  margin-top: 16px;
+  line-height: 1.143rem;
+  margin-top: 1.143rem;
   text-transform: uppercase;
   flex: 1 1 auto;
   margin: 0;
-  padding: 8px 0;
+  padding: 0.571rem 0;
 `;
 
 function DashboardNavBase({ location: { pathname } }) {
-  const home = pathname === ROUTES.home;
   const boards = pathname === ROUTES.root;
   return (
     <SideMenu>
@@ -29,12 +28,6 @@ function DashboardNavBase({ location: { pathname } }) {
           <StyledLi active={boards}>
             <Icon name="trello" />
             <StyledSpan>Boards</StyledSpan>
-          </StyledLi>
-        </Link>
-        <Link to={ROUTES.home}>
-          <StyledLi active={home}>
-            <Icon name="home" />
-            <StyledSpan>Home</StyledSpan>
           </StyledLi>
         </Link>
         <ListTitle>Teams</ListTitle>
