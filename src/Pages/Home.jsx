@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Image } from "semantic-ui-react";
+import TrelloLogo from "../assets/images/trello-logo-white.svg";
 
 const HomeContainer = styled.div`
   width: 100vw;
@@ -7,12 +9,13 @@ const HomeContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 function Home() {
   return (
     <HomeContainer>
-      <h1>Home</h1>
+      <Image src={TrelloLogo} size="medium" />
     </HomeContainer>
   );
 }
