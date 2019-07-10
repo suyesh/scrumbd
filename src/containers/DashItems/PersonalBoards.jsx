@@ -4,6 +4,13 @@ import { fst } from "../../firebase";
 
 function PersonalBoards({ user }) {
   const [personalBoards, setPersonalBoards] = useState([]);
+
+  const handleCreate = board => {
+    const boardsQuery = fst
+      .collection("boards")
+      .add({ ...board, creatorId: user.uid });
+  };
+
   useEffect(() => {
     let boards = [];
     const boardsQuery = fst
@@ -22,7 +29,7 @@ function PersonalBoards({ user }) {
       boards={personalBoards}
       type="personal"
       name="Personal Boards"
-      onCreate={() => console.log("hello")}
+      onCreate={handleCreate}
     />
   );
 }
