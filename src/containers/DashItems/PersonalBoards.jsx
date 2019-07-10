@@ -8,14 +8,14 @@ function PersonalBoards({ user }) {
     let boards = [];
     const boardsQuery = fst
       .collection("boards")
-      .where("creatorId", "==", user.uid)
-      .onSnapshot(snapShot => {
-        snapShot.docs.forEach(board => {
-          boards.push(board.data());
-        });
-        setPersonalBoards(boards);
+      .where("creatorId", "==", user.uid);
+
+    return boardsQuery.onSnapshot(snapShot => {
+      snapShot.docs.forEach(board => {
+        boards.push(board.data());
       });
-    return boardsQuery();
+      setPersonalBoards(boards);
+    });
   }, [user.uid]);
   return (
     <BoardItems
