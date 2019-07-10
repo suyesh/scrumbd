@@ -9,7 +9,7 @@ function withLayout(Comp) {
       <Fragment>
         <Head />
         <GlobalStyle />
-        <NavBar />
+        <NavBar signOut={props.signOut} />
         <Comp {...props} />
       </Fragment>
     );

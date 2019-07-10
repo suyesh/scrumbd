@@ -22,7 +22,6 @@ function App({
 
   return (
     <NotLoggedInRoutes
-      user={user}
       signUp={createUserWithEmailAndPassword}
       error={error}
       setError={setError}

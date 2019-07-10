@@ -10,8 +10,7 @@ export function NotLoggedInRoutes({
   error,
   setError,
   signIn,
-  signInWithGoogle,
-  user
+  signInWithGoogle
 }) {
   return (
     <Suspense fallback={<Loading />}>
@@ -26,7 +25,6 @@ export function NotLoggedInRoutes({
           render={props => (
             <Pages.SignUp
               {...props}
-              user={user}
               signUp={signUp}
               error={error}
               setError={setError}
@@ -39,8 +37,6 @@ export function NotLoggedInRoutes({
           path={ROUTES.signIn}
           render={props => (
             <Pages.SignIn
-              {...props}
-              user={user}
               error={error}
               setError={setError}
               signIn={signIn}
@@ -58,8 +54,8 @@ export function MainRoutes(props) {
   return (
     <Suspense fallback={<Loading />}>
       <Switch>
-        <Redirect from="/sign-in" to="/" />
-        <Redirect from="/sign-up" to="/" />
+        <Redirect from={ROUTES.signIn} to={ROUTES.root} />
+        <Redirect from={ROUTES.signUp} to={ROUTES.root} />
         <Route path={ROUTES.root} exact component={Pages.Dashboard} />
         <Route path={ROUTES.boards} component={Pages.Dashboard} />
         <Route path={ROUTES.board} component={Pages.Board} />

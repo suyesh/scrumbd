@@ -15,7 +15,7 @@ import { sizePX } from "../../utils/deviceSizes";
 import { showSearchInput } from "./redux/NavBarActions";
 import { ROUTES } from "../../constants";
 
-function NavBarBase({ isMobile, showSearch, ...props }) {
+function NavBarBase({ isMobile, showSearch, signOut, user, ...props }) {
   const navigateToHome = () => {
     props.history.push(ROUTES.root);
   };
@@ -83,7 +83,7 @@ function NavBarBase({ isMobile, showSearch, ...props }) {
           color="facebook"
           name="profile"
           isMobile={isMobile}
-          onClick={() => console.log("Clicked")}
+          onClick={signOut}
         />
       </NavSection>
     </NavBarContainer>
