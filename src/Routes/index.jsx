@@ -10,7 +10,8 @@ export function NotLoggedInRoutes({
   error,
   setError,
   signIn,
-  signInWithGoogle
+  signInWithGoogle,
+  user
 }) {
   return (
     <Suspense fallback={<Loading />}>
@@ -34,7 +35,7 @@ export function NotLoggedInRoutes({
   );
 }
 
-export function MainRoutes() {
+export function MainRoutes({ user }) {
   return (
     <Suspense fallback={<Loading />}>
       <Switch>

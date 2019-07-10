@@ -6,12 +6,12 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     margin: 0;
     padding: 0;
-    color: ${props => (props.authenticated ? "#172b4d" : "white")};
+    color: ${props => (props.user ? "#172b4d" : "white")};
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
     font-size: 14px;
     line-height: 1.250em;
     font-weight: 400;
-    background-color: ${props => (props.authenticated ? "#FAFBFC" : "#026AA7")};
+    background-color: ${props => (props.user ? "#FAFBFC" : "#026AA7")};
     box-sizing: border-box;
   }
 `;

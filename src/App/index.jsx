@@ -1,37 +1,22 @@
 import React from "react";
 import { compose } from "recompose";
 import withFirebaseAuth from "react-with-firebase-auth";
+import { withRouter } from "react-router-dom";
 import withLayout from "../Layout";
 import { MainRoutes, NotLoggedInRoutes } from "../Routes";
 import { authProviders, auth } from "../firebase";
 
-function App({
-  createUserWithEmailAndPassword,
-  error,
-  setError,
-  signInWithEmailAndPassword,
-  signInWithGoogle,
-  signOut,
-  user
-}) {
-  if (user) {
-    return <MainRoutes />;
+function App(props) {
+  if (props.user) {
+    return <MainRoutes {...props} />;
   }
-
-  return (
-    <NotLoggedInRoutes
-      signUp={createUserWithEmailAndPassword}
-      error={error}
-      setError={setError}
-      signIn={signInWithEmailAndPassword}
-      signInWithGoogle={signInWithGoogle}
-    />
-  );
+  return <NotLoggedInRoutes {...props} />;
 }
 
 const enhance = compose(
-  withLayout,
-  withFirebaseAuth({ providers: authProviders, firebaseAppAuth: auth })
+  withFirebaseAuth({ providers: authProviders, firebaseAppAuth: auth }),
+  withRouter,
+  withLayout
 );
 
 export default enhance(App);

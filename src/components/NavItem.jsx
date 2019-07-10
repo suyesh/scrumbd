@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Icon } from "semantic-ui-react";
+import { Button, Icon, Image } from "semantic-ui-react";
 import Color from "color";
 
 const StyledButton = styled(Button)`
@@ -26,7 +26,23 @@ const StyledButton = styled(Button)`
   }
 `;
 
-function NavItem({ isMobile, icon, color, name, onClick, showText, hide }) {
+const Avatar = styled(Image)`
+  margin-right: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  border: 2px solid #599ac3;
+`;
+
+function NavItem({
+  isMobile,
+  icon,
+  color,
+  name,
+  onClick,
+  showText,
+  hide,
+  image
+}) {
   if (showText && !isMobile) {
     return (
       <StyledButton
@@ -45,6 +61,10 @@ function NavItem({ isMobile, icon, color, name, onClick, showText, hide }) {
 
   if (hide) {
     return null;
+  }
+
+  if (image) {
+    return <Avatar src={image} avatar size="mini" onClick={onClick} />;
   }
 
   return (

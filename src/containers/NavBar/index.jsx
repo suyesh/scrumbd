@@ -3,6 +3,8 @@ import withSizes from "react-sizes";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { withRouter } from "react-router-dom";
+import { Popup, List } from "semantic-ui-react";
+import styled from "styled-components";
 import {
   NavBarContainer,
   NavSection,
@@ -15,7 +17,28 @@ import { sizePX } from "../../utils/deviceSizes";
 import { showSearchInput } from "./redux/NavBarActions";
 import { ROUTES } from "../../constants";
 
+const Ul = styled(List)`
+  margin: 0 !important;
+`;
+
+const Li = styled(List.Item)`
+  padding: 0.714rem !important;
+  color: #172b4d !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.429rem !important;
+  cursor: pointer !important;
+
+  &:hover {
+    background-color: rgba(9, 30, 66, 0.04) !important;
+  }
+`;
+
 function NavBarBase({ isMobile, showSearch, signOut, user, ...props }) {
+  console.log(user.email);
+  console.log(user.displayName);
+  console.log(user.photoURL);
+  console.log(user.uid);
   const navigateToHome = () => {
     props.history.push(ROUTES.root);
   };
@@ -78,12 +101,25 @@ function NavBarBase({ isMobile, showSearch, signOut, user, ...props }) {
           isMobile={isMobile}
           onClick={() => console.log("Clicked")}
         />
-        <NavItem
-          icon="search"
-          color="facebook"
-          name="profile"
-          isMobile={isMobile}
-          onClick={signOut}
+        <Popup
+          style={{ padding: 0, width: "300px" }}
+          on="click"
+          trigger={
+            <NavItem
+              icon="search"
+              color="facebook"
+              name="profile"
+              image={user.photoURL}
+            />
+          }
+          content={
+            <Ul divided relaxed>
+              <Li disabled>Profile</Li>
+              <Li onClick={signOut}>Log Out</Li>
+            </Ul>
+          }
+          hoverable
+          basic
         />
       </NavSection>
     </NavBarContainer>
