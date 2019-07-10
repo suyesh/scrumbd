@@ -50,7 +50,6 @@ export function NotLoggedInRoutes({
 }
 
 export function MainRoutes(props) {
-  console.log(props);
   return (
     <Suspense fallback={<Loading />}>
       <Switch>

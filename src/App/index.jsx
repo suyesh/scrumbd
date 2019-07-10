@@ -5,7 +5,7 @@ import withLayout from "../Layout";
 import { MainRoutes, NotLoggedInRoutes } from "../Routes";
 import { authProviders, auth } from "../firebase";
 
-const Authenticated = withLayout(MainRoutes);
+const AuthenticatedRoutes = withLayout(MainRoutes);
 
 function App({
   createUserWithEmailAndPassword,
@@ -17,7 +17,7 @@ function App({
   user
 }) {
   if (user) {
-    return <Authenticated user={user} signOut={signOut} />;
+    return <AuthenticatedRoutes user={user} signOut={signOut} />;
   }
 
   return (
