@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
 import PersonalBoards from "./PersonalBoards";
 import StarredBoards from "./StarredBoards";
-import TeamBoards from "./TeamBoards";
+// import TeamBoards from "./TeamBoards";
 
-function Boards() {
+function Boards({ user }) {
   return (
     <Fragment>
       <StarredBoards />
-      <PersonalBoards />
-      <TeamBoards />
+      <PersonalBoards user={user} />
+      {/*<TeamBoards />*/}
     </Fragment>
   );
 }

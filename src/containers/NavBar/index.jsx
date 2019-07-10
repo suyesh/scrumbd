@@ -35,9 +35,6 @@ const Li = styled(List.Item)`
 `;
 
 function NavBarBase({ isMobile, showSearch, signOut, user, ...props }) {
-  console.log(user.email);
-  console.log(user.displayName);
-  console.log(user.photoURL);
   console.log(user.uid);
   const navigateToHome = () => {
     props.history.push(ROUTES.root);

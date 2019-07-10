@@ -3,12 +3,12 @@ import { DashboardContainer, BoardsList } from "../components";
 import { DashboardNav } from "../containers";
 import { DashboardRoutes } from "../Routes";
 
-function Dashboard() {
+function Dashboard({ user }) {
   return (
     <DashboardContainer>
       <DashboardNav />
       <BoardsList>
-        <DashboardRoutes />
+        <DashboardRoutes user={user} />
       </BoardsList>
     </DashboardContainer>
   );

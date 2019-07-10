@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { ROUTES } from "../constants";
 import Pages from "../Pages";
 import DashItems from "../containers/DashItems";
@@ -15,6 +15,7 @@ export function NotLoggedInRoutes({
 }) {
   return (
     <Suspense fallback={<Loading />}>
+      <Redirect from={ROUTES.root} to={ROUTES.home} />
       <Switch>
         <Route
           path={ROUTES.home}
@@ -30,6 +31,7 @@ export function NotLoggedInRoutes({
             />
           )}
         />
+        <Route component={Pages.NoMatch} />
       </Switch>
     </Suspense>
   );
@@ -38,9 +40,17 @@ export function NotLoggedInRoutes({
 export function MainRoutes({ user }) {
   return (
     <Suspense fallback={<Loading />}>
+      <Redirect from={ROUTES.home} to={ROUTES.root} />
       <Switch>
-        <Route path={ROUTES.root} exact component={Pages.Dashboard} />
-        <Route path={ROUTES.boards} component={Pages.Dashboard} />
+        <Route
+          path={ROUTES.root}
+          exact
+          render={props => <Pages.Dashboard {...props} user={user} />}
+        />
+        <Route
+          path={ROUTES.boards}
+          render={props => <Pages.Dashboard {...props} user={user} />}
+        />
         <Route path={ROUTES.board} component={Pages.Board} />
         <Route component={Pages.NoMatch} />
       </Switch>
@@ -48,11 +58,15 @@ export function MainRoutes({ user }) {
   );
 }
 
-export function DashboardRoutes() {
+export function DashboardRoutes({ user }) {
   return (
     <Suspense fallback={<Loading />}>
       <Switch>
-        <Route exact path={ROUTES.root} component={DashItems.boards} />
+        <Route
+          exact
+          path={ROUTES.root}
+          render={props => <DashItems.boards {...props} user={user} />}
+        />
         <Route exact path={ROUTES.teams} component={DashItems.teams} />
       </Switch>
     </Suspense>
