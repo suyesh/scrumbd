@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { ROUTES } from "../constants";
 import Pages from "../Pages";
 import DashItems from "../containers/DashItems";
@@ -18,25 +18,10 @@ export function NotLoggedInRoutes({
         <Route
           path={ROUTES.home}
           exact
-          render={props => <Pages.Home {...props} />}
-        />
-        <Route
-          path={ROUTES.signUp}
           render={props => (
-            <Pages.SignUp
+            <Pages.Home
               {...props}
               signUp={signUp}
-              error={error}
-              setError={setError}
-              signIn={signIn}
-              signInWithGoogle={signInWithGoogle}
-            />
-          )}
-        />
-        <Route
-          path={ROUTES.signIn}
-          render={props => (
-            <Pages.SignIn
               error={error}
               setError={setError}
               signIn={signIn}
@@ -49,12 +34,10 @@ export function NotLoggedInRoutes({
   );
 }
 
-export function MainRoutes(props) {
+export function MainRoutes() {
   return (
     <Suspense fallback={<Loading />}>
       <Switch>
-        <Redirect from={ROUTES.signIn} to={ROUTES.root} />
-        <Redirect from={ROUTES.signUp} to={ROUTES.root} />
         <Route path={ROUTES.root} exact component={Pages.Dashboard} />
         <Route path={ROUTES.boards} component={Pages.Dashboard} />
         <Route path={ROUTES.board} component={Pages.Board} />

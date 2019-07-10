@@ -4,12 +4,12 @@ import GlobalStyle from "../utils/globalStyles";
 import Head from "./Head";
 
 function withLayout(Comp) {
-  return function AppWithLayout(props) {
+  return function AppWithLayout({ user, signOut, ...props }) {
     return (
       <Fragment>
         <Head />
-        <GlobalStyle />
-        <NavBar signOut={props.signOut} />
+        <GlobalStyle authenticated={user} />
+        {user && <NavBar signOut={signOut} user={user} />}
         <Comp {...props} />
       </Fragment>
     );

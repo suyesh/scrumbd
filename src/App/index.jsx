@@ -5,8 +5,6 @@ import withLayout from "../Layout";
 import { MainRoutes, NotLoggedInRoutes } from "../Routes";
 import { authProviders, auth } from "../firebase";
 
-const AuthenticatedRoutes = withLayout(MainRoutes);
-
 function App({
   createUserWithEmailAndPassword,
   error,
@@ -17,7 +15,7 @@ function App({
   user
 }) {
   if (user) {
-    return <AuthenticatedRoutes user={user} signOut={signOut} />;
+    return <MainRoutes />;
   }
 
   return (
@@ -32,6 +30,7 @@ function App({
 }
 
 const enhance = compose(
+  withLayout,
   withFirebaseAuth({ providers: authProviders, firebaseAppAuth: auth })
 );
 
