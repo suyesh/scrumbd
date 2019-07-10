@@ -6,6 +6,8 @@ import withLayout from "../Layout";
 import { MainRoutes, NotLoggedInRoutes } from "../Routes";
 import { authProviders, auth } from "../firebase";
 
+const FIREBASE_AUTH = { providers: authProviders, firebaseAppAuth: auth };
+
 function App(props) {
   if (props.user) {
     return <MainRoutes {...props} />;
@@ -14,7 +16,7 @@ function App(props) {
 }
 
 const enhance = compose(
-  withFirebaseAuth({ providers: authProviders, firebaseAppAuth: auth }),
+  withFirebaseAuth(FIREBASE_AUTH),
   withRouter,
   withLayout
 );
