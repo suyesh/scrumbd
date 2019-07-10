@@ -22,7 +22,7 @@ function withLayout(Comp) {
           redirectToHome();
         }
       },
-      [props.user, redirectToDashboard, redirectToHome]
+      [props.user]
     );
     return (
       <Fragment>
