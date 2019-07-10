@@ -5,16 +5,17 @@ import { fst } from "../../firebase";
 function PersonalBoards({ user }) {
   const [personalBoards, setPersonalBoards] = useState([]);
   useEffect(() => {
+    let boards = [];
     const boardsQuery = fst
       .collection("boards")
-      .where("creatorId", "==", user.uid);
-    return boardsQuery.onSnapshot(snapShot => {
-      let boards = [];
-      snapShot.docs.forEach(board => {
-        boards.push(board.data());
+      .where("creatorId", "==", user.uid)
+      .onSnapshot(snapShot => {
+        snapShot.docs.forEach(board => {
+          boards.push(board.data());
+        });
+        setPersonalBoards(boards);
       });
-      setPersonalBoards(boards);
-    });
+    return boardsQuery();
   }, [user.uid]);
   return (
     <BoardItems
