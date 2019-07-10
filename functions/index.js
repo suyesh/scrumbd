@@ -1,6 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-admin.initializeApp();
+admin.initializeApp(functions.config().firebase);
+const db = admin.firestore();
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -8,7 +9,17 @@ admin.initializeApp();
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //  response.send("Hello from Firebase!");
 // });
+//
+const createProfile = (userRecord, context) => {
+  const { email, displayName, photoURL, uid } = userRecord;
 
-exports.createUser = functions.auth.user().onCreate(user => {
-  console.log(user);
-});
+  return db
+    .collection("Users")
+    .doc(uid)
+    .set({ email, displayName, photoURL })
+    .catch(console.error);
+};
+
+module.exports = {
+  authOnCreate: functions.auth.user().onCreate(createProfile)
+};

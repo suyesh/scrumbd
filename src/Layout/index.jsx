@@ -6,24 +6,14 @@ import Head from "./Head";
 
 function withLayout(Comp) {
   return function AppWithLayout(props) {
-    const redirectToDashboard = () => {
-      props.history.push(ROUTES.root);
-    };
+    useEffect(() => {
+      if (props.user) {
+        props.history.push(ROUTES.root);
+      } else {
+        props.history.push(ROUTES.home);
+      }
+    }, [props.user, props.history.push]);
 
-    const redirectToHome = () => {
-      props.history.push(ROUTES.home);
-    };
-
-    useEffect(
-      () => {
-        if (props.user) {
-          redirectToDashboard();
-        } else {
-          redirectToHome();
-        }
-      },
-      [props.user]
-    );
     return (
       <Fragment>
         <Head />
