@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Image, Button, Icon } from "semantic-ui-react";
+import { Image, Button, Icon, Loader } from "semantic-ui-react";
 import TrelloLogo from "../assets/images/trello-logo-white.svg";
 
 const HomeContainer = styled.div`
@@ -39,19 +39,34 @@ const StyledButton = styled(Button)`
   }
 `;
 
+function Login({ method, text, icon, loading }) {
+  if (loading) {
+    return <Loader>Loading...</Loader>;
+  }
+  return (
+    <StyledButton onClick={method}>
+      <Icon name={icon} size="large" /> {text}
+    </StyledButton>
+  );
+}
+
 function Home({
   signUp,
   error,
   setError,
   signInWithGoogle,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  loading
 }) {
   return (
     <HomeContainer>
       <Image src={TrelloLogo} size="medium" />
-      <StyledButton onClick={signInWithGoogle}>
-        <Icon name="google plus g" size="large" /> Sign in with Google
-      </StyledButton>
+      <Login
+        method={signInWithGoogle}
+        icon="google plus g"
+        text="Sign in with Google"
+        loading={loading}
+      />
     </HomeContainer>
   );
 }

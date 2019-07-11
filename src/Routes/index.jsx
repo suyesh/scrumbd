@@ -11,7 +11,8 @@ export function NotLoggedInRoutes({
   setError,
   signIn,
   signInWithGoogle,
-  user
+  user,
+  loading
 }) {
   return (
     <Suspense fallback={<Loading />}>
@@ -28,6 +29,7 @@ export function NotLoggedInRoutes({
               setError={setError}
               signIn={signIn}
               signInWithGoogle={signInWithGoogle}
+              loading={loading}
             />
           )}
         />
@@ -40,7 +42,12 @@ export function NotLoggedInRoutes({
 export function MainRoutes({ user }) {
   return (
     <Suspense fallback={<Loading />}>
-      <Redirect from={ROUTES.home} to={ROUTES.root} />
+      {user ? (
+        <Redirect from={ROUTES.home} to={ROUTES.root} />
+      ) : (
+        <Redirect from={ROUTES.root} to={ROUTES.home} />
+      )}
+
       <Switch>
         <Route
           path={ROUTES.root}

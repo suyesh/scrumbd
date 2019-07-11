@@ -5,14 +5,18 @@ import { withRouter } from "react-router-dom";
 import withLayout from "../Layout";
 import { MainRoutes, NotLoggedInRoutes } from "../Routes";
 import { authProviders, auth } from "../firebase";
+import { useFirestoreUser } from "../hooks";
 
 const FIREBASE_AUTH = { providers: authProviders, firebaseAppAuth: auth };
 
 function App(props) {
-  if (props.user) {
-    return <MainRoutes {...props} />;
+  const [user, loading] = useFirestoreUser(props.user);
+  const newProps = { ...props, user, loading };
+
+  if (user) {
+    return <MainRoutes {...newProps} />;
   }
-  return <NotLoggedInRoutes {...props} />;
+  return <NotLoggedInRoutes {...newProps} />;
 }
 
 const enhance = compose(

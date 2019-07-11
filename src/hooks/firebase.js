@@ -5,6 +5,10 @@ function boardsRef() {
   return fst.collection("boards");
 }
 
+function usersRef() {
+  return fst.collection("Users");
+}
+
 function useBoards(user) {
   const [boards, setBoards] = useState([]);
 
@@ -22,4 +26,28 @@ function useBoards(user) {
   return boards;
 }
 
-export { useBoards };
+function useFirestoreUser(user) {
+  const [firestoreUser, setFirestoreUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      const userQuery = usersRef().doc(user.uid);
+      userQuery.get().then(doc => {
+        if (doc.exists) {
+          const userRaw = doc.data();
+          setFirestoreUser({ uid: user.uid, ...userRaw });
+        } else {
+          setFirestoreUser(null);
+        }
+      });
+    } else {
+      setFirestoreUser(null);
+    }
+    setAuthLoading(false);
+  }, [user]);
+
+  return [firestoreUser, authLoading];
+}
+
+export { useBoards, useFirestoreUser };
