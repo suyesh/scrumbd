@@ -1,35 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BoardItems } from "../../components";
-import { fst } from "../../firebase";
+import { useBoards } from "../../hooks";
 
 function PersonalBoards({ user }) {
-  const [personalBoards, setPersonalBoards] = useState([]);
-
-  const handleCreate = board => {
-    const boardsQuery = fst
-      .collection("boards")
-      .add({ ...board, creatorId: user.uid });
-  };
-
-  useEffect(() => {
-    let boards = [];
-    const boardsQuery = fst
-      .collection("boards")
-      .where("creatorId", "==", user.uid);
-
-    return boardsQuery.onSnapshot(snapShot => {
-      snapShot.docs.forEach(board => {
-        boards.push(board.data());
-      });
-      setPersonalBoards(boards);
-    });
-  }, [user.uid]);
+  const boards = useBoards(user);
   return (
     <BoardItems
-      boards={personalBoards}
+      boards={boards}
       type="personal"
       name="Personal Boards"
-      onCreate={handleCreate}
+      onCreate={() => console.log("hello")}
     />
   );
 }
