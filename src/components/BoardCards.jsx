@@ -19,30 +19,33 @@ const StyledBoardCard = styled(BoardCard)`
 `;
 
 function Boards({ boards, showStar, star }) {
-  return boards.map((board, index) => (
-    <BoardCard
-      key={index}
-      image={board.image}
-      color={board.color}
-      onMouseEnter={() => showStar(index)}
-      onMouseLeave={() => showStar(null)}
-    >
-      <StyledHeader styled="white">
-        <TruncatedText text={board.title} length={30} />
-      </StyledHeader>
-      <Star
-        show={board.starred}
-        onClick={() => console.log("clicked")}
-        icon="star"
-        color="yellow"
-      />
-      <Star
-        show={star === index && !board.starred}
-        onClick={() => console.log("clicked")}
-        icon="star outline"
-      />
-    </BoardCard>
-  ));
+  if (boards.length > 0) {
+    return boards.map((board, index) => (
+      <BoardCard
+        key={index}
+        image={board.image}
+        color={board.color}
+        onMouseEnter={() => showStar(index)}
+        onMouseLeave={() => showStar(null)}
+      >
+        <StyledHeader styled="white">
+          <TruncatedText text={board.title} length={30} />
+        </StyledHeader>
+        <Star
+          show={board.starred}
+          onClick={() => console.log("clicked")}
+          icon="star"
+          color="yellow"
+        />
+        <Star
+          show={star === index && !board.starred}
+          onClick={() => console.log("clicked")}
+          icon="star outline"
+        />
+      </BoardCard>
+    ));
+  }
+  return null;
 }
 
 export function BoardCards({ boards, onCreate }) {

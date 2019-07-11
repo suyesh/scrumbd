@@ -6,24 +6,25 @@ function PersonalBoards({ user }) {
   const [personalBoards, setPersonalBoards] = useState([]);
 
   const handleCreate = board => {
-    const boardsQuery = fst
-      .collection("boards")
-      .add({ ...board, creatorId: user.uid });
+    console.log("Create");
   };
 
-  useEffect(() => {
-    let boards = [];
-    const boardsQuery = fst
-      .collection("boards")
-      .where("creatorId", "==", user.uid);
+  useEffect(
+    () => {
+      let boards = [];
+      const boardsQuery = fst
+        .collection("boards")
+        .where("creatorId", "==", user.uid);
 
-    return boardsQuery.onSnapshot(snapShot => {
-      snapShot.docs.forEach(board => {
-        boards.push(board.data());
+      return boardsQuery.onSnapshot(snapShot => {
+        snapShot.docs.forEach(board => {
+          boards.push(board.data());
+        });
+        setPersonalBoards(boards);
       });
-      setPersonalBoards(boards);
-    });
-  }, [user.uid]);
+    },
+    [user.uid]
+  );
   return (
     <BoardItems
       boards={personalBoards}
