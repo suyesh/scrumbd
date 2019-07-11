@@ -13,7 +13,7 @@ function App(props) {
   const [user, loading] = useFirestoreUser(props.user);
   const newProps = { ...props, user, loading };
 
-  if (user) {
+  if (user && !loading) {
     return <MainRoutes {...newProps} />;
   }
   return <NotLoggedInRoutes {...newProps} />;
