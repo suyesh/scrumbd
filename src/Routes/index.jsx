@@ -29,7 +29,7 @@ export function NotLoggedInRoutes({
               setError={setError}
               signIn={signIn}
               signInWithGoogle={signInWithGoogle}
-              loading={loading}
+              loading={loading && !user}
             />
           )}
         />
