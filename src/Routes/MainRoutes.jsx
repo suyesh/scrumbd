@@ -5,10 +5,10 @@ import { ROUTES } from "../constants";
 import Pages from "../Pages";
 import { Loading } from "../components";
 
-export function MainRoutes({ user }) {
+export function MainRoutes({ user, loggedIn }) {
   return (
     <Suspense fallback={<Loading />}>
-      <AuthRedirect user={user} />
+      <AuthRedirect loggedIn={loggedIn} />
       <Switch>
         <Route
           path={ROUTES.root}

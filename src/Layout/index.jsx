@@ -5,10 +5,11 @@ import Head from "./Head";
 
 function withLayout(Comp) {
   return function AppWithLayout(props) {
+    console.log(props);
     return (
       <Fragment>
         <Head />
-        <GlobalStyle user={props.user} />
+        <GlobalStyle loggedIn={props.user} />
         {props.user && <NavBar signOut={props.signOut} user={props.user} />}
         <Comp {...props} />
       </Fragment>

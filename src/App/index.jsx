@@ -9,14 +9,19 @@ import { useFirestoreUser } from "../hooks";
 
 const FIREBASE_AUTH = { providers: authProviders, firebaseAppAuth: auth };
 
+function Routes(props) {
+  if (props.loggedIn) {
+    return <MainRoutes {...props} />;
+  }
+  return <NotLoggedInRoutes {...props} />;
+}
+
 function App(props) {
   const [user, loading] = useFirestoreUser(props.user);
-  const newProps = { ...props, user, loading };
+  const propsWithFirestoreUser = { ...props, user, loading };
+  const loggedIn = user && !loading;
 
-  if (user && !loading) {
-    return <MainRoutes {...newProps} />;
-  }
-  return <NotLoggedInRoutes {...newProps} />;
+  return <Routes loggedIn={loggedIn} {...propsWithFirestoreUser} />;
 }
 
 const enhance = compose(

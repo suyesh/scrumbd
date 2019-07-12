@@ -12,11 +12,12 @@ export function NotLoggedInRoutes({
   signIn,
   signInWithGoogle,
   user,
-  loading
+  loading,
+  loggedIn
 }) {
   return (
     <Suspense fallback={<Loading />}>
-      <AuthRedirect user={user} />
+      <AuthRedirect loggedIn={loggedIn} />
       <Switch>
         <Route
           path={ROUTES.home}
