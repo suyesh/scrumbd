@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Image, Button, Icon, Loader } from "semantic-ui-react";
 import TrelloLogo from "../assets/images/trello-logo-white.svg";
@@ -39,12 +39,32 @@ const StyledButton = styled(Button)`
   }
 `;
 
-function Login({ method, text, icon, loading }) {
-  if (loading) {
-    return <Loader>Loading...</Loader>;
+function Login({ method, text, icon, loading, error }) {
+  const [authWindowOpen, setAuthWindowOpen] = useState(false);
+  const handleOnClick = () => {
+    setAuthWindowOpen(true);
+    method();
+  };
+
+  useEffect(
+    () => {
+      if (error) {
+        setAuthWindowOpen(false);
+      }
+    },
+    [error]
+  );
+
+  if (authWindowOpen || loading) {
+    return (
+      <Loader active inline="centered" size="medium" indeterminate inverted>
+        Please Wait...
+      </Loader>
+    );
   }
+
   return (
-    <StyledButton onClick={method}>
+    <StyledButton onClick={handleOnClick}>
       <Icon name={icon} size="large" /> {text}
     </StyledButton>
   );
@@ -66,6 +86,7 @@ function Home({
         icon="google plus g"
         text="Sign in with Google"
         loading={loading}
+        error={error}
       />
     </HomeContainer>
   );
