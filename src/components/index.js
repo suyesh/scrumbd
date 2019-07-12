@@ -23,3 +23,6 @@ export * from "./StyledIcon";
 export * from "./BoardItemTitle";
 export * from "./BoardCards";
 export * from "./BoardItems";
+export * from "./ListTitle";
+export * from "./Ul";
+export * from "./Li";

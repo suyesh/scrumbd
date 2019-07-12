@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Button, Icon, Image } from "semantic-ui-react";
 import Color from "color";
+import { media } from "../utils/deviceSizes";
 
 const StyledButton = styled(Button)`
   background-color: #599ac3 !important;
@@ -27,10 +28,13 @@ const StyledButton = styled(Button)`
 `;
 
 const Avatar = styled(Image)`
-  margin-right: 20px;
-  margin-left: 10px;
   cursor: pointer;
-  border: 2px solid #599ac3;
+  border: 0.143rem solid #599ac3;
+
+  @media ${media.laptop} {
+    margin-right: 1.429rem;
+    margin-left: 0.714rem;
+  }
 `;
 
 function NavItem({
