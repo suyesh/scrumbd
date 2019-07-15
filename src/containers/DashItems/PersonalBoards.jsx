@@ -5,11 +5,12 @@ import { useBoards } from "../../hooks";
 
 function PersonalBoards({ user }) {
   const boards = useBoards(user);
+  const unStarredBoards = boards.items.filter(
+    board => !_.map(user.starred, "id").includes(board.id)
+  );
   return (
     <BoardItems
-      boards={boards.items.filter(
-        board => !_.map(user.starred, "id").includes(board.id)
-      )}
+      boards={unStarredBoards}
       type="personal"
       name="Personal Boards"
       onCreate={() => console.log("hello")}
