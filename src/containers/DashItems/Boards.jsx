@@ -6,7 +6,7 @@ import StarredBoards from "./StarredBoards";
 function Boards({ user }) {
   return (
     <Fragment>
-      <StarredBoards />
+      <StarredBoards user={user} />
       <PersonalBoards user={user} />
       {/*<TeamBoards />*/}
     </Fragment>
