@@ -3,7 +3,7 @@ import _ from "lodash";
 import { BoardItems } from "../../components";
 import { useBoards } from "../../hooks";
 
-function PersonalBoards({ user }) {
+function PersonalBoards({ user, openBoardForm }) {
   const boards = useBoards(user);
   const unStarredBoards = boards.items.filter(
     board => !_.map(user.starred, "id").includes(board.id)
@@ -13,7 +13,7 @@ function PersonalBoards({ user }) {
       boards={unStarredBoards}
       type="personal"
       name="Personal Boards"
-      onCreate={() => console.log("hello")}
+      openBoardForm={openBoardForm}
       loading={boards.loading}
       user={user}
     />

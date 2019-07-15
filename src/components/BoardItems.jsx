@@ -6,14 +6,21 @@ import {
   BoardCards
 } from "./index";
 
-export function BoardItems({ boards, type, name, onCreate, loading, user }) {
+export function BoardItems({
+  boards,
+  type,
+  name,
+  openBoardForm,
+  loading,
+  user
+}) {
   return (
     <BoardItem>
       <BoardItemTitle type={type} name={name} />
       <BoardCardContainer>
         <BoardCards
           boards={boards}
-          onCreate={onCreate}
+          openBoardForm={openBoardForm}
           loading={loading}
           user={user}
         />

@@ -68,7 +68,7 @@ function Boards({ boards, showStar, star, user }) {
   return null;
 }
 
-export function BoardCards({ boards, onCreate, loading, user }) {
+export function BoardCards({ boards, openBoardForm, loading, user }) {
   const [star, showStar] = useState(null);
 
   if (loading) {
@@ -82,7 +82,11 @@ export function BoardCards({ boards, onCreate, loading, user }) {
   return (
     <Fragment>
       <Boards boards={boards} star={star} showStar={showStar} user={user} />
-      {onCreate && <StyledBoardCard>Create Board</StyledBoardCard>}
+      {openBoardForm && (
+        <StyledBoardCard onClick={() => openBoardForm(true)}>
+          Create Board
+        </StyledBoardCard>
+      )}
     </Fragment>
   );
 }
