@@ -17,7 +17,7 @@ function useBoards(user) {
     const boardsQuery = boardsRef().where("creatorId", "==", user.uid);
     return boardsQuery.onSnapshot(snapShot => {
       snapShot.docs.forEach(board => {
-        items.push(board.data());
+        items.push({ ...board.data(), id: board.id });
       });
       setBoards({ items, loading: false });
     });
@@ -35,8 +35,8 @@ function useFirestoreUser(user) {
   useEffect(() => {
     setFirestoreUser({ user: null, loading: true });
     if (user) {
-      const userQuery = usersRef().doc(user.uid);
-      userQuery.get().then(doc => {
+      const userDoc = usersRef().doc(user.uid);
+      userDoc.onSnapshot(doc => {
         if (doc.exists) {
           const userRaw = doc.data();
           setFirestoreUser({

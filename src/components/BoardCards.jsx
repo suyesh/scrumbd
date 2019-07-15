@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { Loader, Dimmer } from "semantic-ui-react";
+import { fst, firebase } from "../firebase";
 import styled from "styled-components";
 import { BoardCard, StyledHeader, TruncatedText, Star } from "./index";
 
@@ -19,8 +20,26 @@ const StyledBoardCard = styled(BoardCard)`
   }
 `;
 
-function Boards({ boards, showStar, star }) {
-  if (boards.length > 0) {
+function Boards({ boards, showStar, star, user }) {
+  const handleStar = board => {
+    const userRef = fst.collection("Users").doc(user.uid);
+    userRef.update({
+      starred: firebase.firestore.FieldValue.arrayUnion(board)
+    });
+  };
+
+  const handleUnStar = board => {
+    const userRef = fst.collection("Users").doc(user.uid);
+    userRef.update({
+      starred: firebase.firestore.FieldValue.arrayRemove(board)
+    });
+  };
+
+  const alreadyStarred = board => {
+    return user.starred.some(doc => doc.id === board.id);
+  };
+
+  if (boards && boards.length > 0) {
     return boards.map((board, index) => (
       <BoardCard
         key={index}
@@ -33,14 +52,14 @@ function Boards({ boards, showStar, star }) {
           <TruncatedText text={board.title} length={30} />
         </StyledHeader>
         <Star
-          show={board.starred}
-          onClick={() => console.log("clicked")}
+          show={alreadyStarred(board)}
+          onClick={() => handleUnStar(board)}
           icon="star"
           color="yellow"
         />
         <Star
-          show={star === index && !board.starred}
-          onClick={() => console.log("clicked")}
+          show={star === index && !alreadyStarred(board)}
+          onClick={() => handleStar(board)}
           icon="star outline"
         />
       </BoardCard>
@@ -49,7 +68,7 @@ function Boards({ boards, showStar, star }) {
   return null;
 }
 
-export function BoardCards({ boards, onCreate, loading }) {
+export function BoardCards({ boards, onCreate, loading, user }) {
   const [star, showStar] = useState(null);
 
   if (loading) {
@@ -62,7 +81,7 @@ export function BoardCards({ boards, onCreate, loading }) {
 
   return (
     <Fragment>
-      <Boards boards={boards} star={star} showStar={showStar} />
+      <Boards boards={boards} star={star} showStar={showStar} user={user} />
       {onCreate && <StyledBoardCard>Create Board</StyledBoardCard>}
     </Fragment>
   );

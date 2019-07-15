@@ -27,7 +27,7 @@ const StyledStar = styled(Icon)`
 
 export function Star({ onClick, show, icon, color }) {
   if (show) {
-    return <StyledStar name={icon} color={color} />;
+    return <StyledStar name={icon} color={color} onClick={onClick} />;
   }
   return null;
 }
