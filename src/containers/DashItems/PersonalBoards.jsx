@@ -6,10 +6,11 @@ function PersonalBoards({ user }) {
   const boards = useBoards(user);
   return (
     <BoardItems
-      boards={boards}
+      boards={boards.items}
       type="personal"
       name="Personal Boards"
       onCreate={() => console.log("hello")}
+      loading={boards.loading}
     />
   );
 }

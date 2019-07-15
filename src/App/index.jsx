@@ -17,9 +17,13 @@ function Routes(props) {
 }
 
 function App(props) {
-  const [user, loading] = useFirestoreUser(props.user);
-  const propsWithFirestoreUser = { ...props, user, loading };
-  const loggedIn = user && !loading;
+  const [user] = useFirestoreUser(props.user);
+  const propsWithFirestoreUser = {
+    ...props,
+    user: user.user,
+    loading: user.loading
+  };
+  const loggedIn = user.user && !user.loading;
 
   return <Routes loggedIn={loggedIn} {...propsWithFirestoreUser} />;
 }

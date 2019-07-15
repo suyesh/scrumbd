@@ -10,16 +10,16 @@ function usersRef() {
 }
 
 function useBoards(user) {
-  const [boards, setBoards] = useState([]);
+  const [boards, setBoards] = useState({ items: [], loading: true });
 
   useEffect(() => {
-    let boards = [];
+    let items = [];
     const boardsQuery = boardsRef().where("creatorId", "==", user.uid);
     return boardsQuery.onSnapshot(snapShot => {
       snapShot.docs.forEach(board => {
-        boards.push(board.data());
+        items.push(board.data());
       });
-      setBoards(boards);
+      setBoards({ items, loading: false });
     });
   }, [user.uid]);
 
@@ -27,27 +27,32 @@ function useBoards(user) {
 }
 
 function useFirestoreUser(user) {
-  const [firestoreUser, setFirestoreUser] = useState(null);
-  const [authLoading, setAuthLoading] = useState(true);
+  const [firestoreUser, setFirestoreUser] = useState({
+    user: null,
+    loading: true
+  });
 
   useEffect(() => {
+    setFirestoreUser({ user: null, loading: true });
     if (user) {
       const userQuery = usersRef().doc(user.uid);
       userQuery.get().then(doc => {
         if (doc.exists) {
           const userRaw = doc.data();
-          setFirestoreUser({ uid: user.uid, ...userRaw });
+          setFirestoreUser({
+            user: { uid: user.uid, ...userRaw },
+            loading: false
+          });
         } else {
-          setFirestoreUser(null);
+          setFirestoreUser({ user: null, loading: false });
         }
       });
     } else {
-      setFirestoreUser(null);
+      setFirestoreUser({ user: null, loading: false });
     }
-    setAuthLoading(false);
   }, [user]);
 
-  return [firestoreUser, authLoading];
+  return [firestoreUser];
 }
 
 export { useBoards, useFirestoreUser };

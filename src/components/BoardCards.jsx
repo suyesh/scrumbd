@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import { Loader, Dimmer } from "semantic-ui-react";
 import styled from "styled-components";
 import { BoardCard, StyledHeader, TruncatedText, Star } from "./index";
 
@@ -48,8 +49,16 @@ function Boards({ boards, showStar, star }) {
   return null;
 }
 
-export function BoardCards({ boards, onCreate }) {
+export function BoardCards({ boards, onCreate, loading }) {
   const [star, showStar] = useState(null);
+
+  if (loading) {
+    return (
+      <Dimmer active inverted>
+        <Loader />
+      </Dimmer>
+    );
+  }
 
   return (
     <Fragment>
