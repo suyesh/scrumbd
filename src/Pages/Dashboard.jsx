@@ -14,7 +14,16 @@ const CreateBoardContainer = styled.div`
   background-color: red;
   width: 30rem;
   height: 11.071rem;
-  z-index: 1000;
+  z-index: 10000;
+`;
+
+const StyledDimmer = styled(Dimmer.Inner)`
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  opacity: 0.3 !important;
 `;
 
 function CreateBoard({ open }) {
@@ -28,7 +37,13 @@ function Dashboard({ user }) {
   const [boardForm, openBoardForm] = useState(false);
   return (
     <DashboardContainer>
-      <Dimmer active={boardForm} />
+      <Dimmer active={boardForm}>
+        <StyledDimmer
+          active={boardForm}
+          onClick={() => openBoardForm(false)}
+          page
+        />
+      </Dimmer>
       <CreateBoard open={boardForm} />
       <DashboardNav />
       <BoardsList>
