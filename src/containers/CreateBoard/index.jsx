@@ -37,6 +37,9 @@ const SubmitButtonContainer = styled.div`
 const TitleInputContainer = styled.div`
   background-color: green;
   flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 `;
 
 const BackgroundInputContainer = styled.div`
@@ -44,12 +47,42 @@ const BackgroundInputContainer = styled.div`
   flex: 1;
 `;
 
+const StyledInput = styled(Input)`
+  & input {
+    background: transparent !important;
+    border: none !important;
+    color: #fff !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 24px !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    outline: 0 !important;
+    background: hsla(0, 0%, 100%, 0.1) !important;
+    height: 35px !important;
+
+    &::placeholder {
+      color: #fff !important;
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      line-height: 24px !important;
+    }
+
+    &:focus {
+      background: hsla(0, 0%, 100%, 0.3) !important;
+      border-radius: 3px;
+    }
+  }
+`;
+
 function CreateBoardBase({ open }) {
   if (open) {
     return (
       <CreateBoardContainer>
         <InputContainer>
-          <TitleInputContainer />
+          <TitleInputContainer>
+            <StyledInput placeholder="Add board title" />
+          </TitleInputContainer>
           <BackgroundInputContainer />
         </InputContainer>
         <SubmitButtonContainer>

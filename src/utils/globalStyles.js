@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     overflow: ${props => props.dimmer && "hidden"};
   }
+
+  input {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+  }
 `;
 
 export default GlobalStyle;
