@@ -9,7 +9,7 @@ const NavBarContainer = styled.div`
   color: white;
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: ${props => (props.dimmer ? 0 : 10000)};
 `;
 
 export { NavBarContainer };

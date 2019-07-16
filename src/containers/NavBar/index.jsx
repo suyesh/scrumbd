@@ -18,7 +18,7 @@ import { sizePX } from "../../utils/deviceSizes";
 import { showSearchInput } from "./redux/NavBarActions";
 import { ROUTES } from "../../constants";
 
-function NavBarBase({ isMobile, showSearch, signOut, user, ...props }) {
+function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
   const navigateToHome = () => {
     props.history.push(ROUTES.root);
   };
@@ -28,7 +28,7 @@ function NavBarBase({ isMobile, showSearch, signOut, user, ...props }) {
   };
 
   return (
-    <NavBarContainer>
+    <NavBarContainer dimmer={dimmer}>
       <NavSection justifyContent="flex-start">
         <NavItem
           icon="home"
@@ -63,7 +63,11 @@ function NavBarBase({ isMobile, showSearch, signOut, user, ...props }) {
       </NavSection>
 
       <NavSection>
-        <Logo logo={TrelloLogo} shrink={showSearch && !isMobile} />
+        <Logo
+          logo={TrelloLogo}
+          shrink={showSearch && !isMobile}
+          isMobile={isMobile}
+        />
       </NavSection>
 
       <NavSection justifyContent="flex-end">

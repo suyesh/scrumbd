@@ -1,0 +1,1 @@
+export const TOGGLE_BOARD_FORM = "TOGGLE_BOARD_FORM";

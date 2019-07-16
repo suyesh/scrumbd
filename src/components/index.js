@@ -26,3 +26,4 @@ export * from "./BoardItems";
 export * from "./ListTitle";
 export * from "./Ul";
 export * from "./Li";
+export * from "./Dimmer";

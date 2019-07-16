@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     background-color: ${props => (props.loggedIn ? "#FAFBFC" : "#026AA7")};
     box-sizing: border-box;
+    overflow: ${props => props.dimmer && "hidden"};
   }
 `;
 
