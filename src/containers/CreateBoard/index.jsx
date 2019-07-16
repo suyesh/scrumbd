@@ -36,9 +36,13 @@ const SubmitButtonContainer = styled.div`
 
 const TitleInputContainer = styled.div`
   background-color: green;
+  flex: 2;
 `;
 
-const BackgroundInputContainer = styled.div``;
+const BackgroundInputContainer = styled.div`
+  background-color: red;
+  flex: 1;
+`;
 
 function CreateBoardBase({ open }) {
   if (open) {
