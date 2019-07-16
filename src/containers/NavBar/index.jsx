@@ -77,6 +77,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
           name="add"
           isMobile={isMobile}
           onClick={() => console.log("Clicked")}
+          style={{ marginLeft: "30px" }}
         />
         <NavItem
           icon="bell"

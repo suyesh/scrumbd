@@ -10,7 +10,7 @@ const StyledButton = styled(Button)`
   box-shadow: 0 !important;
   text-transform: capitalize !important;
   width: ${props =>
-    props.ismobile === "false" && props.name === "search" && "200px"};
+    props.ismobile === "false" && props.name === "search" && "14.286em"};
   display: ${props =>
     props.ismobile === "false" && props.name === "search" && "flex"} !important;
   justify-content: ${props =>
@@ -45,7 +45,8 @@ function NavItem({
   onClick,
   showText,
   hide,
-  image
+  image,
+  style
 }) {
   if (showText && !isMobile) {
     return (
@@ -56,6 +57,7 @@ function NavItem({
         labelPosition="left"
         onClick={onClick}
         ismobile={isMobile.toString()}
+        style={style || {}}
       >
         <Icon name={icon} />
         {name}
@@ -78,6 +80,7 @@ function NavItem({
       name={name}
       onClick={() => onClick()}
       ismobile={isMobile.toString()}
+      style={style || {}}
     />
   );
 }

@@ -4,7 +4,11 @@ import { Image } from "semantic-ui-react";
 
 const StyledImage = styled(Image)`
   width: ${props =>
-    props.shrink === "true" || props.isMobile === "true" ? "6rem" : "7rem"};
+    props.shrink === "true" || props.isMobile === "true"
+      ? props.isMobile
+        ? "5rem"
+        : "6rem"
+      : "7rem"};
   margin-right: auto;
   margin-left: auto;
   opacity: ${props => (props.shrink === "true" ? 0.5 : 0.9)};
