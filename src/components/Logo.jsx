@@ -4,8 +4,9 @@ import { Image } from "semantic-ui-react";
 
 const StyledImage = styled(Image)`
   width: ${props =>
-    props.shrink === "true" || props.isMobile === "true" ? "6em" : "7rem"};
-  margin-right: ${props => props.shrink === "true" && "100px"};
+    props.shrink === "true" || props.isMobile === "true" ? "6rem" : "7rem"};
+  margin-right: auto;
+  margin-left: auto;
   opacity: ${props => (props.shrink === "true" ? 0.5 : 0.9)};
   cursor: pointer;
 
