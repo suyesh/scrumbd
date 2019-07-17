@@ -8,7 +8,7 @@ import { toggleBoardForm } from "../containers/CreateBoard/redux/CreateBoardActi
 function Dashboard({ user, ...props }) {
   return (
     <DashboardContainer>
-      <CreateBoard />
+      <CreateBoard user={user} />
       <DashboardNav />
       <BoardsList>
         <DashboardRoutes user={user} openBoardForm={props.toggleBoardForm} />

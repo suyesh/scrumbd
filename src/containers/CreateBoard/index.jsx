@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Input } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { toggleBoardForm } from "./redux/CreateBoardActions";
+import { fst } from "../../firebase";
 
 const CreateBoardContainer = styled.div`
   position: absolute;
@@ -94,11 +96,12 @@ function ColorSelector({ color, onClick }) {
   );
 }
 
-function CreateBoardBase({ open }) {
+function CreateBoardBase({ open, user, ...props }) {
   const [formParams, setFormParams] = useState({
     title: "",
     color: "#026AA7",
-    image: null
+    image: null,
+    creatorId: user.uid
   });
 
   const handleTitle = (e, data) => {
@@ -107,6 +110,11 @@ function CreateBoardBase({ open }) {
 
   const handleColor = color => {
     setFormParams({ ...formParams, color });
+  };
+
+  const handleCreateBoard = () => {
+    fst.collection("boards").add(formParams);
+    props.toggleBoardForm(false);
   };
 
   if (open) {
@@ -125,11 +133,11 @@ function CreateBoardBase({ open }) {
             <ColorSelector color="#34495e" onClick={handleColor} />
             <ColorSelector color="#6ab04c" onClick={handleColor} />
             <ColorSelector color="#4834d4" onClick={handleColor} />
-            <div />
+            <ColorSelector color="#026AA7" onClick={handleColor} />
           </BackgroundInputContainer>
         </InputContainer>
         <SubmitButtonContainer>
-          <Button>Create Board</Button>
+          <Button onClick={handleCreateBoard}>Create Board</Button>
         </SubmitButtonContainer>
       </CreateBoardContainer>
     );
@@ -141,6 +149,13 @@ const mapStateToProps = ({ boardForm }) => ({
   open: boardForm.open
 });
 
-const CreateBoard = connect(mapStateToProps)(CreateBoardBase);
+const actions = {
+  toggleBoardForm
+};
+
+const CreateBoard = connect(
+  mapStateToProps,
+  actions
+)(CreateBoardBase);
 
 export { CreateBoard };
