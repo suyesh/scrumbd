@@ -36,7 +36,7 @@ function Boards({ boards, showStar, star, user }) {
   };
 
   const alreadyStarred = board => {
-    return user.starred.some(doc => doc.id === board.id);
+    return user.starred && user.starred.some(doc => doc.id === board.id);
   };
 
   if (boards && boards.length > 0) {

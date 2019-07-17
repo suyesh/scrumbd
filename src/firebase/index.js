@@ -16,7 +16,6 @@ firebase.initializeApp(firebaseConfig);
 
 const fst = firebase.firestore();
 const auth = firebase.auth();
-fst.enablePersistence();
 
 const authProviders = {
   googleProvider: new firebase.auth.GoogleAuthProvider()
