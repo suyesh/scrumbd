@@ -13,6 +13,13 @@ import {
 import { toggleBoardForm, updateBoardForm } from "./redux/CreateBoardActions";
 import { fst } from "../../firebase";
 
+function CreateButton({ show, text, onClick }) {
+  if (show) {
+    return <Button onClick={onClick}>{text}</Button>;
+  }
+  return null;
+}
+
 function CreateBoardBase({ open, user, values, ...props }) {
   const [enabled, setEnabled] = useState(true);
   const { color, title } = values;
@@ -55,9 +62,11 @@ function CreateBoardBase({ open, user, values, ...props }) {
           </BackgroundInputContainer>
         </InputContainer>
         <SubmitButtonContainer>
-          <Button onClick={handleCreateBoard} disabled={!enabled}>
-            Create Board
-          </Button>
+          <CreateButton
+            onClick={handleCreateBoard}
+            text="Create Board"
+            show={enabled}
+          />
         </SubmitButtonContainer>
       </CreateBoardContainer>
     );
