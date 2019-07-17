@@ -5,7 +5,8 @@ const INITIAL_STATE = {
   values: {
     title: "",
     color: "#026AA7",
-    image: null
+    image: null,
+    creatorId: null
   }
 };
 
@@ -14,7 +15,7 @@ export default function CreadeBoardReducer(state = INITIAL_STATE, action) {
     case TOGGLE_BOARD_FORM:
       return { ...state, open: action.payload };
     case UPDATE_BOARD_FORM:
-      return { ...state, values: { ...state.values, ...action.values } };
+      return { ...state, values: { ...state.values, ...action.payload } };
     default:
       return state;
   }

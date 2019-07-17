@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const ColorSquare = styled.div`
-  background-color: ${props => props.color};
+const StyledDiv = styled.div`
+  background-color: ${props => props.color} !important;
 `;
 
 export function ColorSelector({ color, onClick }) {
-  return <ColorSquare onClick={() => onClick(color)} />;
+  return <StyledDiv onClick={() => onClick(color)} color={color} />;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import {
@@ -10,27 +10,28 @@ import {
   SubmitButtonContainer,
   TitleInputContainer
 } from "../../components";
-import { toggleBoardForm } from "./redux/CreateBoardActions";
+import { toggleBoardForm, updateBoardForm } from "./redux/CreateBoardActions";
 import { fst } from "../../firebase";
 
-function CreateBoardBase({ open, user, ...props }) {
-  const [formParams, setFormParams] = useState({
-    title: "",
-    color: "#026AA7",
-    image: null,
-    creatorId: user.uid
-  });
+function CreateBoardBase({ open, user, values, ...props }) {
+  const [enabled, setEnabled] = useState(true);
+  const { color, title } = values;
+  const { uid } = user;
+
+  useEffect(() => {
+    setEnabled(title.length > 0);
+  }, [title]);
 
   const handleTitle = (e, data) => {
-    setFormParams({ ...formParams, title: data.value });
+    props.updateBoardForm({ title: data.value, creatorId: uid });
   };
 
   const handleColor = color => {
-    setFormParams({ ...formParams, color });
+    props.updateBoardForm({ color, creatorId: uid });
   };
 
   const handleCreateBoard = () => {
-    fst.collection("boards").add(formParams);
+    fst.collection("boards").add(values);
     props.toggleBoardForm(false);
   };
 
@@ -38,7 +39,7 @@ function CreateBoardBase({ open, user, ...props }) {
     return (
       <CreateBoardContainer>
         <InputContainer>
-          <TitleInputContainer color={formParams.color}>
+          <TitleInputContainer color={color}>
             <StyledInput placeholder="Add board title" onChange={handleTitle} />
           </TitleInputContainer>
           <BackgroundInputContainer>
@@ -54,7 +55,9 @@ function CreateBoardBase({ open, user, ...props }) {
           </BackgroundInputContainer>
         </InputContainer>
         <SubmitButtonContainer>
-          <Button onClick={handleCreateBoard}>Create Board</Button>
+          <Button onClick={handleCreateBoard} disabled={!enabled}>
+            Create Board
+          </Button>
         </SubmitButtonContainer>
       </CreateBoardContainer>
     );
@@ -62,12 +65,14 @@ function CreateBoardBase({ open, user, ...props }) {
   return null;
 }
 
-const mapStateToProps = ({ boardForm }) => ({
-  open: boardForm.open
+const mapStateToProps = ({ boardForm: { open, values } }) => ({
+  open,
+  values
 });
 
 const actions = {
-  toggleBoardForm
+  toggleBoardForm,
+  updateBoardForm
 };
 
 const CreateBoard = connect(
