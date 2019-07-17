@@ -77,7 +77,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
           name="add"
           isMobile={isMobile}
           onClick={() => console.log("Clicked")}
-          style={{ marginLeft: "30px" }}
+          style={{ marginLeft: "2.143rem" }}
         />
         <NavItem
           icon="bell"
@@ -87,7 +87,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
           onClick={() => console.log("Clicked")}
         />
         <Popup
-          style={{ width: "300px" }}
+          style={{ width: "21.429rem" }}
           on="click"
           trigger={
             <NavItem

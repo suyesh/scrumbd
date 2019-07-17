@@ -4,8 +4,8 @@ import { Image } from "semantic-ui-react";
 
 const StyledImage = styled(Image)`
   width: ${props =>
-    props.shrink === "true" || props.isMobile === "true"
-      ? props.isMobile
+    props.shrink === "true" || props.ismobile === "true"
+      ? props.ismobile
         ? "5rem"
         : "6rem"
       : "7rem"};
@@ -24,7 +24,7 @@ function Logo({ logo, shrink, isMobile }) {
     <StyledImage
       src={logo}
       shrink={shrink.toString()}
-      isMobile={isMobile.toString()}
+      ismobile={isMobile.toString()}
     />
   );
 }
