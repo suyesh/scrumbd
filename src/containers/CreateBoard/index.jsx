@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Input } from "semantic-ui-react";
 import { connect } from "react-redux";
@@ -19,10 +19,11 @@ const CreateBoardContainer = styled.div`
 `;
 
 const InputContainer = styled.div`
-  background-color: green;
+  background-color: transparent;
   flex: 1;
   width: 100%;
   display: flex;
+  margin-bottom: 5px;
 `;
 
 const SubmitButtonContainer = styled.div`
@@ -35,16 +36,28 @@ const SubmitButtonContainer = styled.div`
 `;
 
 const TitleInputContainer = styled.div`
-  background-color: green;
+  background-color: ${props => props.color};
   flex: 2;
   display: flex;
   flex-direction: column;
   padding: 15px;
+  margin-right: 5px;
 `;
 
 const BackgroundInputContainer = styled.div`
-  background-color: red;
+  background-color: transparent;
   flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+  grid-auto-rows: minmax(35px, 1fr);
+  grid-gap: 10px;
+  & div {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 `;
 
 const StyledInput = styled(Input)`
@@ -75,15 +88,45 @@ const StyledInput = styled(Input)`
   }
 `;
 
+function ColorSelector({ color, onClick }) {
+  return (
+    <div style={{ backgroundColor: color }} onClick={() => onClick(color)} />
+  );
+}
+
 function CreateBoardBase({ open }) {
+  const [formParams, setFormParams] = useState({
+    title: "",
+    color: "#026AA7",
+    image: null
+  });
+
+  const handleTitle = (e, data) => {
+    setFormParams({ ...formParams, title: data.value });
+  };
+
+  const handleColor = color => {
+    setFormParams({ ...formParams, color });
+  };
+
   if (open) {
     return (
       <CreateBoardContainer>
         <InputContainer>
-          <TitleInputContainer>
-            <StyledInput placeholder="Add board title" />
+          <TitleInputContainer color={formParams.color}>
+            <StyledInput placeholder="Add board title" onChange={handleTitle} />
           </TitleInputContainer>
-          <BackgroundInputContainer />
+          <BackgroundInputContainer>
+            <ColorSelector color="#8e44ad" onClick={handleColor} />
+            <ColorSelector color="#3498db" onClick={handleColor} />
+            <ColorSelector color="#27ae60" onClick={handleColor} />
+            <ColorSelector color="#e67e22" onClick={handleColor} />
+            <ColorSelector color="#e74c3c" onClick={handleColor} />
+            <ColorSelector color="#34495e" onClick={handleColor} />
+            <ColorSelector color="#6ab04c" onClick={handleColor} />
+            <ColorSelector color="#4834d4" onClick={handleColor} />
+            <div />
+          </BackgroundInputContainer>
         </InputContainer>
         <SubmitButtonContainer>
           <Button>Create Board</Button>
