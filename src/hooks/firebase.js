@@ -20,6 +20,7 @@ function useBoards(user) {
         items.push({ ...board.data(), id: board.id });
       });
       setBoards({ items, loading: false });
+      items = [];
     });
   }, [user.uid]);
 

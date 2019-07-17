@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import {
@@ -13,21 +13,10 @@ import {
 import { toggleBoardForm, updateBoardForm } from "./redux/CreateBoardActions";
 import { fst } from "../../firebase";
 
-function CreateButton({ show, text, onClick }) {
-  if (show) {
-    return <Button onClick={onClick}>{text}</Button>;
-  }
-  return null;
-}
-
 function CreateBoardBase({ open, user, values, ...props }) {
-  const [enabled, setEnabled] = useState(true);
   const { color, title } = values;
   const { uid } = user;
-
-  useEffect(() => {
-    setEnabled(title.length > 0);
-  }, [title]);
+  const showCreateButton = title.length > 0;
 
   const handleTitle = (e, data) => {
     props.updateBoardForm({ title: data.value, creatorId: uid });
@@ -38,8 +27,10 @@ function CreateBoardBase({ open, user, values, ...props }) {
   };
 
   const handleCreateBoard = () => {
-    fst.collection("boards").add(values);
-    props.toggleBoardForm(false);
+    if (title.length > 0) {
+      fst.collection("boards").add(values);
+      props.toggleBoardForm(false);
+    }
   };
 
   if (open) {
@@ -62,11 +53,9 @@ function CreateBoardBase({ open, user, values, ...props }) {
           </BackgroundInputContainer>
         </InputContainer>
         <SubmitButtonContainer>
-          <CreateButton
-            onClick={handleCreateBoard}
-            text="Create Board"
-            show={enabled}
-          />
+          {showCreateButton && (
+            <Button onClick={handleCreateBoard}>Create Board</Button>
+          )}
         </SubmitButtonContainer>
       </CreateBoardContainer>
     );
