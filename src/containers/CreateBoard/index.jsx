@@ -1,100 +1,17 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Button, Input } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
+import {
+  BackgroundInputContainer,
+  ColorSelector,
+  CreateBoardContainer,
+  InputContainer,
+  StyledInput,
+  SubmitButtonContainer,
+  TitleInputContainer
+} from "../../components";
 import { toggleBoardForm } from "./redux/CreateBoardActions";
 import { fst } from "../../firebase";
-
-const CreateBoardContainer = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-right: auto;
-  margin-left: auto;
-  background: transparent;
-  width: 30rem;
-  height: 11.071rem;
-  z-index: 10000;
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-`;
-
-const InputContainer = styled.div`
-  background-color: transparent;
-  flex: 1;
-  width: 100%;
-  display: flex;
-  margin-bottom: 5px;
-`;
-
-const SubmitButtonContainer = styled.div`
-  background: transparent;
-  height: 3.357rem;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const TitleInputContainer = styled.div`
-  background-color: ${props => props.color};
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  margin-right: 5px;
-`;
-
-const BackgroundInputContainer = styled.div`
-  background-color: transparent;
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
-  grid-auto-rows: minmax(35px, 1fr);
-  grid-gap: 10px;
-  & div {
-    background-color: black;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-`;
-
-const StyledInput = styled(Input)`
-  & input {
-    background: transparent !important;
-    border: none !important;
-    color: #fff !important;
-    font-size: 1.143rem !important;
-    font-weight: 700 !important;
-    line-height: 1.5em !important;
-    margin: 0 !important;
-    min-height: 0 !important;
-    outline: 0 !important;
-    background: hsla(0, 0%, 100%, 0.1) !important;
-    height: 2.188em !important;
-
-    &::placeholder {
-      color: #fff !important;
-      font-size: 1em !important;
-      font-weight: 800 !important;
-      line-height: 1.5em !important;
-    }
-
-    &:focus {
-      background: hsla(0, 0%, 100%, 0.3) !important;
-      border-radius: 0.188em;
-    }
-  }
-`;
-
-function ColorSelector({ color, onClick }) {
-  return (
-    <div style={{ backgroundColor: color }} onClick={() => onClick(color)} />
-  );
-}
 
 function CreateBoardBase({ open, user, ...props }) {
   const [formParams, setFormParams] = useState({
