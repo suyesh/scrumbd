@@ -4,8 +4,19 @@ import { Button, Icon, Image } from "semantic-ui-react";
 import Color from "color";
 import { media } from "../utils/deviceSizes";
 
+const buttonColor = color =>
+  Color(color)
+    .lighten(0.2)
+    .whiten(0.2)
+    .hex();
+
+const darkenColor = color =>
+  Color(color)
+    .darken(0.1)
+    .hex();
+
 const StyledButton = styled(Button)`
-  background-color: #599ac3 !important;
+  background-color: ${props => buttonColor(props.navColor)} !important;
   border: none !important;
   box-shadow: 0 !important;
   text-transform: capitalize !important;
@@ -21,15 +32,14 @@ const StyledButton = styled(Button)`
     props.ismobile === "false" && props.name === "search" && "text"} !important;
 
   &:hover {
-    background-color: ${Color("#599ac3")
-      .darken(0.1)
-      .hex()} !important;
+    background-color: ${props =>
+      darkenColor(buttonColor(props.navColor))} !important;
   }
 `;
 
 const Avatar = styled(Image)`
   cursor: pointer;
-  border: 0.143rem solid #599ac3;
+  border: 0.143rem solid ${props => buttonColor(props.navColor)};
 
   @media ${media.laptop} {
     margin-right: 1.429rem;
@@ -46,7 +56,8 @@ function NavItem({
   showText,
   hide,
   image,
-  style
+  style,
+  navColor
 }) {
   if (showText && !isMobile) {
     return (
@@ -54,6 +65,7 @@ function NavItem({
         icon
         color={color}
         name={name}
+        navColor={navColor}
         labelPosition="left"
         onClick={onClick}
         ismobile={isMobile.toString()}
@@ -70,7 +82,15 @@ function NavItem({
   }
 
   if (image) {
-    return <Avatar src={image} avatar size="mini" onClick={onClick} />;
+    return (
+      <Avatar
+        src={image}
+        avatar
+        size="mini"
+        onClick={onClick}
+        navColor={navColor}
+      />
+    );
   }
 
   return (
@@ -81,6 +101,7 @@ function NavItem({
       onClick={() => onClick()}
       ismobile={isMobile.toString()}
       style={style || {}}
+      navColor={navColor}
     />
   );
 }

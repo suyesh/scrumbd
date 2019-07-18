@@ -14,8 +14,13 @@ export default function CreadeBoardReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case TOGGLE_BOARD_FORM:
       return { ...state, open: action.payload };
-    case UPDATE_BOARD_FORM:
-      return { ...state, values: { ...state.values, ...action.payload } };
+    case UPDATE_BOARD_FORM: {
+      if (action.payload) {
+        return { ...state, values: { ...state.values, ...action.payload } };
+      }
+      return INITIAL_STATE;
+    }
+
     default:
       return state;
   }

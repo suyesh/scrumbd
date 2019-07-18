@@ -29,7 +29,7 @@ function CreateBoardBase({ open, user, values, ...props }) {
   const handleCreateBoard = () => {
     if (title.length > 0) {
       boardsRef().add(values);
-      props.toggleBoardForm(false);
+      props.updateBoardForm(null);
     }
   };
 

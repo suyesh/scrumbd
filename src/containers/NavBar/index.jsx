@@ -18,7 +18,15 @@ import { sizePX } from "../../utils/deviceSizes";
 import { showSearchInput } from "./redux/NavBarActions";
 import { ROUTES } from "../../constants";
 
-function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
+function NavBarBase({
+  isMobile,
+  showSearch,
+  signOut,
+  dimmer,
+  user,
+  navColor,
+  ...props
+}) {
   const navigateToHome = () => {
     props.history.push(ROUTES.root);
   };
@@ -28,7 +36,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
   };
 
   return (
-    <NavBarContainer dimmer={dimmer}>
+    <NavBarContainer dimmer={dimmer} color={navColor}>
       <NavSection justifyContent="flex-start">
         <NavItem
           icon="home"
@@ -36,6 +44,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
           name="home"
           isMobile={isMobile}
           onClick={navigateToHome}
+          navColor={navColor}
         />
 
         <NavItem
@@ -45,6 +54,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
           isMobile={isMobile}
           onClick={() => console.log("/")}
           showText
+          navColor={navColor}
         />
 
         <NavItem
@@ -54,6 +64,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
           isMobile={isMobile}
           onClick={handleSearchClick}
           hide={showSearch && !isMobile}
+          navColor={navColor}
         />
 
         <SearchInput
@@ -67,6 +78,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
           logo={TrelloLogo}
           shrink={showSearch && !isMobile}
           isMobile={isMobile}
+          navColor={navColor}
         />
       </NavSection>
 
@@ -78,6 +90,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
           isMobile={isMobile}
           onClick={() => console.log("Clicked")}
           style={{ marginLeft: "2.143rem" }}
+          navColor={navColor}
         />
         <NavItem
           icon="bell"
@@ -85,6 +98,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
           name="notifications"
           isMobile={isMobile}
           onClick={() => console.log("Clicked")}
+          navColor={navColor}
         />
         <Popup
           style={{ width: "21.429rem" }}
@@ -95,6 +109,7 @@ function NavBarBase({ isMobile, showSearch, signOut, dimmer, user, ...props }) {
               color="facebook"
               name="profile"
               image={user.photoURL}
+              navColor={navColor}
             />
           }
           content={
@@ -115,8 +130,9 @@ const mapSizesToProps = ({ width }) => ({
   isMobile: width < sizePX.laptop
 });
 
-const mapStateToProps = ({ nav }) => ({
-  showSearch: nav.showSearch
+const mapStateToProps = ({ nav, boardForm }) => ({
+  showSearch: nav.showSearch,
+  navColor: boardForm.values.color
 });
 
 const actions = {

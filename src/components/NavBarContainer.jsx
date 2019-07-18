@@ -5,7 +5,7 @@ const NavBarContainer = styled.div`
   height: 3.214rem;
   display: flex;
   flex-direction: row;
-  background-color: #016aa7;
+  background-color: ${props => props.color};
   color: white;
   position: sticky;
   top: 0;
