@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { fst } from "../firebase";
 
-function boardsRef() {
+export function boardsRef() {
   return fst.collection("boards");
 }
 
-function usersRef() {
+export function usersRef() {
   return fst.collection("Users");
 }
 
-function useBoards(user) {
+export function useBoards(user) {
   const [boards, setBoards] = useState({ items: [], loading: true });
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function useBoards(user) {
   return boards;
 }
 
-function useFirestoreUser(user) {
+export function useFirestoreUser(user) {
   const [firestoreUser, setFirestoreUser] = useState({
     user: null,
     loading: true
@@ -54,5 +54,3 @@ function useFirestoreUser(user) {
 
   return [firestoreUser];
 }
-
-export { useBoards, useFirestoreUser };

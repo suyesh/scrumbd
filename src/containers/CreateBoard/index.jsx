@@ -11,7 +11,7 @@ import {
   TitleInputContainer
 } from "../../components";
 import { toggleBoardForm, updateBoardForm } from "./redux/CreateBoardActions";
-import { fst } from "../../firebase";
+import { boardsRef } from "../../hooks";
 
 function CreateBoardBase({ open, user, values, ...props }) {
   const { color, title } = values;
@@ -28,7 +28,7 @@ function CreateBoardBase({ open, user, values, ...props }) {
 
   const handleCreateBoard = () => {
     if (title.length > 0) {
-      fst.collection("boards").add(values);
+      boardsRef().add(values);
       props.toggleBoardForm(false);
     }
   };
