@@ -16,7 +16,7 @@ const darkenColor = color =>
     .hex();
 
 const StyledButton = styled(Button)`
-  background-color: ${props => buttonColor(props.navColor)} !important;
+  background-color: ${props => buttonColor(props.navcolor)} !important;
   border: none !important;
   box-shadow: 0 !important;
   text-transform: capitalize !important;
@@ -33,13 +33,13 @@ const StyledButton = styled(Button)`
 
   &:hover {
     background-color: ${props =>
-      darkenColor(buttonColor(props.navColor))} !important;
+      darkenColor(buttonColor(props.navcolor))} !important;
   }
 `;
 
 const Avatar = styled(Image)`
   cursor: pointer;
-  border: 0.143rem solid ${props => buttonColor(props.navColor)};
+  border: 0.143rem solid ${props => buttonColor(props.navcolor)};
 
   @media ${media.laptop} {
     margin-right: 1.429rem;
@@ -65,7 +65,7 @@ function NavItem({
         icon
         color={color}
         name={name}
-        navColor={navColor}
+        navcolor={navColor}
         labelPosition="left"
         onClick={onClick}
         ismobile={isMobile.toString()}
@@ -88,7 +88,7 @@ function NavItem({
         avatar
         size="mini"
         onClick={onClick}
-        navColor={navColor}
+        navcolor={navColor}
       />
     );
   }
@@ -101,7 +101,7 @@ function NavItem({
       onClick={() => onClick()}
       ismobile={isMobile.toString()}
       style={style || {}}
-      navColor={navColor}
+      navcolor={navColor}
     />
   );
 }

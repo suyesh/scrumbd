@@ -10,10 +10,14 @@ import {
   SubmitButtonContainer,
   TitleInputContainer
 } from "../../components";
-import { toggleBoardForm, updateBoardForm } from "./redux/CreateBoardActions";
+import {
+  toggleBoardForm,
+  updateBoardForm,
+  setCreating
+} from "./redux/CreateBoardActions";
 import { boardsRef } from "../../hooks";
 
-function CreateBoardBase({ open, user, values, ...props }) {
+function CreateBoardBase({ open, user, values, creating, ...props }) {
   const { color, title } = values;
   const { uid } = user;
   const showCreateButton = title.length > 0;
@@ -27,9 +31,14 @@ function CreateBoardBase({ open, user, values, ...props }) {
   };
 
   const handleCreateBoard = () => {
+    props.setCreating(true);
     if (title.length > 0) {
-      boardsRef().add(values);
-      props.updateBoardForm(null);
+      boardsRef()
+        .add(values)
+        .then(b => {
+          props.toggleBoardForm(false);
+          props.setCreating(false);
+        });
     }
   };
 
@@ -54,7 +63,9 @@ function CreateBoardBase({ open, user, values, ...props }) {
         </InputContainer>
         <SubmitButtonContainer>
           {showCreateButton && (
-            <Button onClick={handleCreateBoard}>Create Board</Button>
+            <Button onClick={handleCreateBoard} loading={creating}>
+              Create Board
+            </Button>
           )}
         </SubmitButtonContainer>
       </CreateBoardContainer>
@@ -63,14 +74,16 @@ function CreateBoardBase({ open, user, values, ...props }) {
   return null;
 }
 
-const mapStateToProps = ({ boardForm: { open, values } }) => ({
+const mapStateToProps = ({ boardForm: { open, values, creating } }) => ({
   open,
-  values
+  values,
+  creating
 });
 
 const actions = {
   toggleBoardForm,
-  updateBoardForm
+  updateBoardForm,
+  setCreating
 };
 
 const CreateBoard = connect(
