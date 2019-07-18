@@ -13,14 +13,13 @@ function useBoards(user) {
   const [boards, setBoards] = useState({ items: [], loading: true });
 
   useEffect(() => {
-    let items = [];
     const boardsQuery = boardsRef().where("creatorId", "==", user.uid);
     return boardsQuery.onSnapshot(snapShot => {
+      let items = [];
       snapShot.docs.forEach(board => {
         items.push({ ...board.data(), id: board.id });
       });
       setBoards({ items, loading: false });
-      items = [];
     });
   }, [user.uid]);
 
