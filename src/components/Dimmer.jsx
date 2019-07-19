@@ -9,7 +9,7 @@ const StyledDimmer = styled(Dimmer.Inner)`
   right: 0 !important;
   left: 0 !important;
   overflow: hidden !important;
-  opacity: 0.3 !important;
+  opacity: 0.1 !important;
   z-index: 100000;
 `;
 

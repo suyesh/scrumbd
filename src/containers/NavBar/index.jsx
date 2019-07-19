@@ -130,9 +130,9 @@ const mapSizesToProps = ({ width }) => ({
   isMobile: width < sizePX.laptop
 });
 
-const mapStateToProps = ({ nav, boardForm }) => ({
+const mapStateToProps = ({ nav, board }) => ({
   showSearch: nav.showSearch,
-  navColor: boardForm.values.color
+  navColor: board.color
 });
 
 const actions = {

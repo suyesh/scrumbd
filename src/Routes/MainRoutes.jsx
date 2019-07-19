@@ -11,15 +11,20 @@ export function MainRoutes({ user, loggedIn }) {
       <AuthRedirect loggedIn={loggedIn} />
       <Switch>
         <Route
+          exact
+          path={ROUTES.board}
+          render={props => <Pages.Board {...props} user={user} />}
+        />
+        <Route
           path={ROUTES.root}
           exact
           render={props => <Pages.Dashboard {...props} user={user} />}
         />
         <Route
+          exact
           path={ROUTES.boards}
           render={props => <Pages.Dashboard {...props} user={user} />}
         />
-        <Route path={ROUTES.board} component={Pages.Board} />
         <Route component={Pages.NoMatch} />
       </Switch>
     </Suspense>
