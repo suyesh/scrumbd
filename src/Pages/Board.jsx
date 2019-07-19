@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { BoardView } from "../containers";
 
 const BoardContainer = styled.div`
   width: 100%;
@@ -7,7 +8,11 @@ const BoardContainer = styled.div`
 `;
 
 function Board() {
-  return <BoardContainer>Tasks</BoardContainer>;
+  return (
+    <BoardContainer>
+      <BoardView />
+    </BoardContainer>
+  );
 }
 
 export default Board;

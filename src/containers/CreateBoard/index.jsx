@@ -17,7 +17,14 @@ import {
 } from "./redux/CreateBoardActions";
 import { boardsRef } from "../../hooks";
 
-function CreateBoardBase({ open, user, values, creating, ...props }) {
+function CreateBoardBase({
+  open,
+  user,
+  values,
+  creating,
+  navigateToBoard,
+  ...props
+}) {
   const { color, title } = values;
   const { uid } = user;
   const showCreateButton = title.length > 0;
@@ -38,6 +45,7 @@ function CreateBoardBase({ open, user, values, creating, ...props }) {
         .then(b => {
           props.toggleBoardForm(false);
           props.setCreating(false);
+          navigateToBoard(`/board/${b.id}`);
         });
     }
   };
