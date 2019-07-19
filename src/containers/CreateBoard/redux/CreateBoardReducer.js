@@ -21,7 +21,8 @@ export default function CreadeBoardReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         open: action.payload,
-        creating: !action.payload ? false : state.creating
+        creating: !action.payload ? false : state.creating,
+        values: !action.payload ? INITIAL_STATE.values : state.values
       };
     case CREATING: {
       if (action.value) {

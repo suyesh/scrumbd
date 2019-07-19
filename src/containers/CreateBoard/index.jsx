@@ -23,11 +23,15 @@ function CreateBoardBase({ open, user, values, creating, ...props }) {
   const showCreateButton = title.length > 0;
 
   const handleTitle = (e, data) => {
-    props.updateBoardForm({ title: data.value, creatorId: uid });
+    props.updateBoardForm({
+      title: data.value,
+      creatorId: uid,
+      createdAt: new Date()
+    });
   };
 
   const handleColor = color => {
-    props.updateBoardForm({ color, creatorId: uid });
+    props.updateBoardForm({ color, creatorId: uid, createAt: new Date() });
   };
 
   const handleCreateBoard = () => {
