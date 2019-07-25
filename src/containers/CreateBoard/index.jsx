@@ -41,16 +41,13 @@ function CreateBoardBase({
     props.updateBoardForm({ color, creatorId: uid, createAt: new Date() });
   };
 
-  const handleCreateBoard = () => {
+  const handleCreateBoard = async () => {
     props.setCreating(true);
     if (title.length > 0) {
-      boardsRef()
-        .add(values)
-        .then(b => {
-          props.toggleBoardForm(false);
-          props.setCreating(false);
-          navigateToBoard(`/board/${b.id}`);
-        });
+      const board = boardsRef().add(values);
+      navigateToBoard(`/board/${board.id}`);
+      props.toggleBoardForm(false);
+      props.setCreating(false);
     }
   };
 

@@ -1,4 +1,5 @@
 import { UPDATE_BOARD_FORM } from "../../CreateBoard/redux/CreateBoardActionTypes";
+import { RESET_BOARD } from "./BoardViewActionTypes";
 
 const INITIAL_STATE = {
   title: "",
@@ -13,6 +14,8 @@ export default function BoardViewReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case UPDATE_BOARD_FORM:
       return { ...state, ...action.payload };
+    case RESET_BOARD:
+      return INITIAL_STATE;
     default:
       return state;
   }
