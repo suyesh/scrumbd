@@ -1,16 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+import { compose } from "recompose";
 import { withRouter } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { chain } from "lodash";
 
-function Head({ location: { pathname } }) {
-  const title =
-    chain(pathname)
-      .split("/")
-      .last()
-      .capitalize()
-      .value() || "Home";
-
+function Head({ title }) {
   return (
     <Helmet>
       <meta name="theme-color" content="#026AA7" />
@@ -19,4 +14,22 @@ function Head({ location: { pathname } }) {
   );
 }
 
-export default withRouter(Head);
+const mapStateToProps = ({ board }, ownProps) => {
+  let title;
+  if (board.title !== "") {
+    title = board.title;
+  } else {
+    title =
+      chain(ownProps.location.pathname)
+        .split("/")
+        .last()
+        .capitalize()
+        .value() || "Home";
+  }
+  return { title };
+};
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(Head);

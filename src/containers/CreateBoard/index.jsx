@@ -44,7 +44,7 @@ function CreateBoardBase({
   const handleCreateBoard = async () => {
     props.setCreating(true);
     if (title.length > 0) {
-      const board = boardsRef().add(values);
+      const board = await boardsRef().add(values);
       navigateToBoard(`/board/${board.id}`);
       props.toggleBoardForm(false);
       props.setCreating(false);
