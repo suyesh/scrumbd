@@ -5,28 +5,40 @@ import { withRouter } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { chain } from "lodash";
 
-function Head({ title }) {
+function Head({ title, color }) {
   return (
     <Helmet>
-      <meta name="theme-color" content="#026AA7" />
-      <title>{`${title} | Trello`}</title>
+      <meta name="theme-color" content={color} />
+      <title>{`Trello | ${title}`}</title>
     </Helmet>
   );
 }
 
-const mapStateToProps = ({ board }, ownProps) => {
-  let title;
-  if (board.title !== "") {
-    title = board.title;
-  } else {
-    title =
-      chain(ownProps.location.pathname)
-        .split("/")
-        .last()
-        .capitalize()
-        .value() || "Home";
+const title = (boardTitle, pathname) => {
+  if (boardTitle !== "") {
+    return boardTitle;
   }
-  return { title };
+  return (
+    chain(ownProps.location.pathname)
+      .split("/")
+      .last()
+      .capitalize()
+      .value() || "Home"
+  );
+};
+
+const color = (image, boardColor) => {
+  if (image) {
+    return "#2c3e50";
+  }
+  return boardColor;
+};
+
+const mapStateToProps = ({ board }, ownProps) => {
+  return {
+    title: title(board.title, ownProps.location.pathname),
+    color: color(board.image, board.color)
+  };
 };
 
 export default compose(
