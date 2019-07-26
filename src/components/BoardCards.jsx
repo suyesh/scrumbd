@@ -20,7 +20,7 @@ const StyledBoardCard = styled(BoardCard)`
   }
 `;
 
-function Boards({ boards, showStar, star, user }) {
+function Boards({ boards, showStar, star, user, navigateToBoard }) {
   const handleStar = board => {
     const userRef = fst.collection("Users").doc(user.uid);
     userRef.update({
@@ -47,6 +47,7 @@ function Boards({ boards, showStar, star, user }) {
         color={board.color}
         onMouseEnter={() => showStar(index)}
         onMouseLeave={() => showStar(null)}
+        onClick={() => navigateToBoard(board)}
       >
         <StyledHeader styled="white">
           <TruncatedText text={board.title} length={30} />
@@ -68,7 +69,13 @@ function Boards({ boards, showStar, star, user }) {
   return null;
 }
 
-export function BoardCards({ boards, openBoardForm, loading, user }) {
+export function BoardCards({
+  boards,
+  openBoardForm,
+  loading,
+  user,
+  navigateToBoard
+}) {
   const [star, showStar] = useState(null);
 
   if (loading) {
@@ -81,7 +88,13 @@ export function BoardCards({ boards, openBoardForm, loading, user }) {
 
   return (
     <Fragment>
-      <Boards boards={boards} star={star} showStar={showStar} user={user} />
+      <Boards
+        boards={boards}
+        star={star}
+        showStar={showStar}
+        user={user}
+        navigateToBoard={navigateToBoard}
+      />
       {openBoardForm && (
         <StyledBoardCard onClick={() => openBoardForm(true)}>
           Create Board

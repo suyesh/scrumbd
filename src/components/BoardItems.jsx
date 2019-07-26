@@ -12,7 +12,8 @@ export function BoardItems({
   name,
   openBoardForm,
   loading,
-  user
+  user,
+  navigateToBoard
 }) {
   return (
     <BoardItem>
@@ -23,6 +24,7 @@ export function BoardItems({
           openBoardForm={openBoardForm}
           loading={loading}
           user={user}
+          navigateToBoard={navigateToBoard}
         />
       </BoardCardContainer>
     </BoardItem>

@@ -1,7 +1,7 @@
 import React from "react";
 import { BoardItems } from "../../components";
 
-function StarredBoards({ user }) {
+function StarredBoards({ user, navigateToBoard }) {
   if (user.starred && user.starred.length > 0) {
     return (
       <BoardItems
@@ -9,6 +9,7 @@ function StarredBoards({ user }) {
         type="starred"
         name="Starred Boards"
         user={user}
+        navigateToBoard={navigateToBoard}
       />
     );
   }

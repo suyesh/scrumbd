@@ -3,7 +3,7 @@ import _ from "lodash";
 import { BoardItems } from "../../components";
 import { useBoards } from "../../hooks";
 
-function PersonalBoards({ user, openBoardForm }) {
+function PersonalBoards({ user, openBoardForm, navigateToBoard }) {
   const boards = useBoards(user);
   const unStarredBoards = boards.items.filter(
     board => !_.map(user.starred, "id").includes(board.id)
@@ -16,6 +16,7 @@ function PersonalBoards({ user, openBoardForm }) {
       openBoardForm={openBoardForm}
       loading={boards.loading}
       user={user}
+      navigateToBoard={navigateToBoard}
     />
   );
 }

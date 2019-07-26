@@ -3,11 +3,15 @@ import PersonalBoards from "./PersonalBoards";
 import StarredBoards from "./StarredBoards";
 // import TeamBoards from "./TeamBoards";
 
-function Boards({ user, openBoardForm }) {
+function Boards({ user, openBoardForm, navigateToBoard }) {
   return (
     <Fragment>
-      <StarredBoards user={user} />
-      <PersonalBoards user={user} openBoardForm={openBoardForm} />
+      <StarredBoards user={user} navigateToBoard={navigateToBoard} />
+      <PersonalBoards
+        user={user}
+        openBoardForm={openBoardForm}
+        navigateToBoard={navigateToBoard}
+      />
       {/*<TeamBoards />*/}
     </Fragment>
   );

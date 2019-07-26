@@ -4,7 +4,7 @@ import { ROUTES } from "../constants";
 import DashItems from "../containers/DashItems";
 import { Loading } from "../components";
 
-export function DashboardRoutes({ user, openBoardForm }) {
+export function DashboardRoutes({ user, openBoardForm, navigateToBoard }) {
   return (
     <Suspense fallback={<Loading />}>
       <Switch>
@@ -16,10 +16,16 @@ export function DashboardRoutes({ user, openBoardForm }) {
               {...props}
               user={user}
               openBoardForm={openBoardForm}
+              navigateToBoard={navigateToBoard}
             />
           )}
         />
-        <Route exact path={ROUTES.teams} component={DashItems.teams} />
+        <Route
+          exact
+          path={ROUTES.teams}
+          component={DashItems.teams}
+          navigateToBoard={navigateToBoard}
+        />
       </Switch>
     </Suspense>
   );
