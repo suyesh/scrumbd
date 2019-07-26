@@ -20,6 +20,16 @@ const StyledBoardCard = styled(BoardCard)`
   }
 `;
 
+const ClickZone = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 60%;
+  background-color: transparent;
+  z-index: 500;
+`;
+
 function Boards({ boards, showStar, star, user, navigateToBoard }) {
   const handleStar = board => {
     const userRef = fst.collection("Users").doc(user.uid);
@@ -47,11 +57,11 @@ function Boards({ boards, showStar, star, user, navigateToBoard }) {
         color={board.color}
         onMouseEnter={() => showStar(index)}
         onMouseLeave={() => showStar(null)}
-        onClick={() => navigateToBoard(board)}
       >
-        <StyledHeader styled="white">
+        <StyledHeader styled="white" onClick={() => navigateToBoard(board)}>
           <TruncatedText text={board.title} length={30} />
         </StyledHeader>
+        <ClickZone onClick={() => navigateToBoard(board)} />
         <Star
           show={alreadyStarred(board)}
           onClick={() => handleUnStar(board)}
