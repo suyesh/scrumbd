@@ -19,7 +19,7 @@ const title = (boardTitle, pathname) => {
     return boardTitle;
   }
   return (
-    chain(ownProps.location.pathname)
+    chain(pathname)
       .split("/")
       .last()
       .capitalize()
